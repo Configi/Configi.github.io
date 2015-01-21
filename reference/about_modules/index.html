@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="http://www.configi.org/reference/about_modules/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+        <title>About Modules - Configi</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Configi</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../license">License</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../download">Download</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            <li class="active">
+                                <a href=".">About Modules</a>
+                            </li>
+                        
+                            <li >
+                                <a href="../policy_functions">Policy Functions</a>
+                            </li>
+                        
+                            <li >
+                                <a href="../module_functions">Module Functions</a>
+                            </li>
+                        
+                            <li >
+                                <a href="../cli">CLI</a>
+                            </li>
+                        
+                            <li >
+                                <a href="../glossary">Glossary</a>
+                            </li>
+                        
+                            <li >
+                                <a href="../gotchas">Gotchas</a>
+                            </li>
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                
+                <li >
+                    <a rel="next" href="../../download">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../policy_functions">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                
+                <li>
+                    <a href="https://github.com/tongson/Configi">
+                        
+                            <i class="fa fa-github"></i>
+                        
+                        GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#about-modules">About Modules</a></li>
+        
+            <li><a href="#anatomy-of-a-module">Anatomy of a module</a></li>
+        
+            <li><a href="#notes">Notes</a></li>
+        
+            <li><a href="#documentation">Documentation</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="about-modules">About Modules</h1>
+<hr />
+<p>Configi modules are simply Lua modules which return a table. It was decided to call them a <em>module</em> too since they are essentially the same as Lua modules. The module terminology is also very common and easily understood in the software industry.</p>
+<p>Here is an example module to demonstrate the parts:</p>
+<pre><code>local Lua = {}
+local Func = {}
+local Configi = require"configi"
+local Lc = require"cimicida"
+local Px = require"px"
+local Cmd = Px.cmd
+local example = {}
+local ENV = {}
+_ENV = ENV
+
+local main = function (S, M, G)
+  local C = Configi.start(S, M, G)
+  C.required = { "what" }
+  C.alias.task = { "work" }
+  return Configi.finish(C)
+end
+
+Func.done = function ()
+end
+
+function example.present (S)
+  local M = { "task" }
+  local G = {
+    ok = "example.present: Ok",
+    skip = "example.present: Skipped",
+    fail = "example.presnet: Error"
+  }
+  local F, P, R = main(S, M, G)
+  if Func.done() then
+    return F.skip(P.task)
+  end
+  return F.result(F.run(Cmd.something{ action = P.task }), P.task)
+end
+
+example.done = example.present
+return example
+</code></pre>
+<h3 id="anatomy-of-a-module">Anatomy of a module</h3>
+<hr />
+<p><strong>Header and loaded Lua modules</strong></p>
+<pre><code>local Lua = {}
+local Func = {}
+local Configi = require"configi"
+local Lc = require"cimicida"
+local Px = require"px"
+local Cmd = Px.cmd
+local example = {}
+local ENV = {}
+_ENV = ENV
+</code></pre>
+<p>The Lua table is used to localize core Lua functions. For example, if we want to localize table.insert and call it as Lua.insert inside the module:</p>
+<pre><code>local Lua = {
+  insert = table.insert
+}
+</code></pre>
+<p>The Func table is used to contain functions local to the module (except for <code>main</code>). You can see it in practice in the above module when Func.done was assigned a function.</p>
+<hr />
+<p><strong>Required Modules</strong></p>
+<p>The rest of the header specifies the Lua modules that are required. If you look at the example above or at the existing Configi modules you will notice that the following Lua modules are usually <em>required</em>.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Module</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>configi</strong></td>
+<td>The core Lua module of Configi. It is the <strong>only</strong> required Lua module.</td>
+</tr>
+<tr>
+<td align="left"><strong>cimicida</strong></td>
+<td>The official standard library / utility belt / batteries of Configi.</td>
+</tr>
+<tr>
+<td align="left"><strong>px</strong></td>
+<td>Mostly extensions to the luaposix module and functions used for system operations.</td>
+</tr>
+</tbody>
+</table>
+<p>Feel free to submit patches to extend these modules.</p>
+<hr />
+<p><strong>Initialization</strong></p>
+<pre><code>local main = function (S, M, G)
+  local C = Configi.start(S, M, G)
+  C.required = { "what" }
+  C.alias.task = { "work" }
+  return Configi.finish(C)
+end
+</code></pre>
+<p>The local function <code>main</code> is called by each module function to initialize the tables and values required to execute a call to a script function. For more information on the <code>S</code>,<code>M</code>,<code>G</code> parameters see the following section about functions.</p>
+<p>The <code>required</code> key of the table returned by <code>Configi.start</code> is a table that list the required parameter(s) by <em>all</em> functions of the module. <code>alias</code> is for specifying aliases to the required or valid parameters.</p>
+<p>The <code>main</code> function returns a table (C) that contains the functions (F), parameters (P) and results (R) table that are used inside the module functions.</p>
+<p>Local or internal functions can be declared before or after <code>main</code>.</p>
+<hr />
+<p><strong>Functions</strong></p>
+<pre><code>function example.present (S)
+  local M = { "task" }
+  local G = {
+    ok = "example.present: Ok",
+    skip = "example.present: Skipped",
+    fail = "example.presnet: Error"
+  }
+  local F, P, R = main(S, M, G)
+  if Func.done() then
+    return F.skip(P.task)
+  end
+  return F.result(F.run(Cmd.something, { action = P.task }), P.task)
+end
+</code></pre>
+<p>Functions does the actual execution of commands or call operations that change the state of a host. The structure of a function follows the <code>skip or execute or fail</code> pattern.</p>
+<p>The <code>S</code> argument to the function is the string of parameter-arguments. They are written as <code>parameter "argument"</code> in policies. The <code>main</code> functions passes this string to load() for evaluation.</p>
+<p>The <code>M</code> table is a string array of valid parameters that the function can take.</p>
+<p><code>G</code> is the table of strings used for messages, debugging and logging. G.ok is used for successful operations, G.fail for failures or errors, G.skip for no-change or no-action conditions.</p>
+<p><code>S</code>, <code>M</code> and <code>G</code> are passed to the <code>main</code> function which returns: <code>F</code> a table that contains Configi functions, <code>P</code> a table that contains the parameter-arguments, <code>R</code> a table that is used to store results</p>
+<p>Configi has support for handlers. The argument to the <code>notify_kept</code> parameter is called when a function is skipped. The argument to <code>notify</code> when the function succeeds with the prescribed operation. The argument to <code>notify_failed</code> when the operation fails.</p>
+<p>Some modules require you to micromanage operations, messages and results. Here's an equivalent of the function above:</p>
+<pre><code>function example.present (S)
+  local M = { "task" }
+  local G = {
+ok = "example.present: Ok",
+    skip = "example.present: Skipped",
+    fail = "example.presnet: Error"
+  }
+  local F, P, R = main(S, M, G)
+  if Func.done() then
+    F.msg(P.task, G.skip, nil)
+    R.notify_kept = P.notify_kept
+    return R
+  end
+  if F.run(Cmd.something, { action = P.task }) then
+    F.msg(P.task, G.ok, true)
+    R.notify = P.notify
+    R.changed = true
+  else
+    R.notify_failed = P.notify_failed
+    R.failed = true
+  end
+  return R
+end
+</code></pre>
+<hr />
+<p><strong>Footer</strong></p>
+<pre><code>example.done = example.present
+return example
+</code></pre>
+<p>This is where function aliases are declared and the table return statement of a Lua module.</p>
+<h3 id="notes">Notes</h3>
+<ul>
+<li>
+<p>It is the module's responsibility to determine whether anything needs to be done. An operation that modifies the system state should be convergent.</p>
+</li>
+<li>
+<p>Modules are auto-loaded based on the name of the called module function. For example in a script containing the following snippet, module <code>example</code> is auto-loaded.</p>
+<p>example.present [[
+  task "yes"
+]]</p>
+</li>
+<li>
+<p>When writing modules run it through the excellent linting tool, Luacheck <a href="https://github.com/mpeterv/luacheck/">https://github.com/mpeterv/luacheck/</a>.</p>
+</li>
+<li>
+<p>Remember that a configuration management software's real strength comes from the quality of its modules.</p>
+</li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<p>Module and function documentation is generated using <a href="https://github.com/stevedonovan/LDoc">LDoc</a>. See the existing modules for examples.</p>
+</div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <p>Copyright &copy; 2015, <a href="https://twitter.com/tongson">Eduardo Tongson</a>.</p>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/base.js"></script>
+    </body>
+</html>

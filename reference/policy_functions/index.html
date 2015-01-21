@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="http://www.configi.org/reference/policy_functions/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+        <title>Policy Functions - Configi</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Configi</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../license">License</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../download">Download</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            <li >
+                                <a href="../about_modules">About Modules</a>
+                            </li>
+                        
+                            <li class="active">
+                                <a href=".">Policy Functions</a>
+                            </li>
+                        
+                            <li >
+                                <a href="../module_functions">Module Functions</a>
+                            </li>
+                        
+                            <li >
+                                <a href="../cli">CLI</a>
+                            </li>
+                        
+                            <li >
+                                <a href="../glossary">Glossary</a>
+                            </li>
+                        
+                            <li >
+                                <a href="../gotchas">Gotchas</a>
+                            </li>
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                
+                <li >
+                    <a rel="next" href="../about_modules">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../module_functions">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                
+                <li>
+                    <a href="https://github.com/tongson/Configi">
+                        
+                            <i class="fa fa-github"></i>
+                        
+                        GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#policy-functions">Policy Functions</a></li>
+        
+            <li><a href="#ipairst">ipairs(t)</a></li>
+        
+            <li><a href="#pairst">pairs(t)</a></li>
+        
+            <li><a href="#listt">list(t)</a></li>
+        
+            <li><a href="#subs-t">sub(s, t)</a></li>
+        
+            <li><a href="#formats">format(s, ...)</a></li>
+        
+            <li><a href="#debugs">debug(s)</a></li>
+        
+            <li><a href="#tests">test(s)</a></li>
+        
+            <li><a href="#syslogs">syslog(s)</a></li>
+        
+            <li><a href="#logs">log(s)</a></li>
+        
+            <li><a href="#includes">include(s)</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="policy-functions">Policy Functions</h1>
+<p>These functions are available for all policies.</p>
+<hr />
+<h4 id="ipairst">ipairs(t)</h4>
+<p>Same as Lua ipairs(). From the Lua Reference Manual:</p>
+<p>Returns three values: an iterator function, the table t, and 0, so that the construction</p>
+<pre><code>for i,v in ipairs(t) do body end
+</code></pre>
+<p>will iterate over the pairs (1,t[1]), (2,t[2]), ..., up to the first integer key absent from the table.</p>
+<hr />
+<h4 id="pairst">pairs(t)</h4>
+<p>Same as Lua pairs(). From the Lua Reference Manual:</p>
+<p>Returns three values: the next function, the table t, and nil, so that the construction</p>
+<pre><code> for k,v in pairs(t) do body end
+</code></pre>
+<p>will iterate over all key–value pairs of table t.</p>
+<hr />
+<h4 id="listt">list(t)</h4>
+<p>Given a table <code>t</code>, iterate over this table and return a line terminated <code>field "value"</code> pair.</p>
+<p>For instance the following snippet</p>
+<pre><code>d = {
+  { comment = "one", path = "tmp/one" },
+  { comment = "two", path = "tmp/two" }
+}
+
+for dirs in list(d) do
+  file.absent(dirs)
+end
+</code></pre>
+<p>is equivalent to</p>
+<pre><code>file.absent[[
+  comment "one"
+  path "tmp/one"
+]]
+
+file.absent[[
+  comment "two"
+  path "tmp/two"
+]]
+</code></pre>
+<hr />
+<h4 id="subs-t">sub(s, t)</h4>
+<p>Simple string interpolation.</p>
+<p>Given a table <code>t</code>, interpolate the string <code>s</code> by replacing corresponding field names with the respective value.</p>
+<pre><code>tbl = { "field" = "value" }
+str = [[ this is the {{ field }} ]]
+</code></pre>
+<p>If passed with these arguments, a new string is returned as</p>
+<pre><code>'this is the value'
+</code></pre>
+<hr />
+<h4 id="formats">format(s, ...)</h4>
+<p>Same as Lua string.format(). From the Lua Reference Manual:</p>
+<p>Returns a formatted version of its variable number of arguments following the description given in its first argument (which must be a string). The format string follows the same rules as the ANSI C function sprintf. The only differences are that the options/modifiers *, h, L, l, n, and p are not supported and that there is an extra option, q. The q option formats a string between double quotes, using escape sequences when necessary to ensure that it can safely be read back by the Lua interpreter. For instance, the call</p>
+<pre><code>string.format('%q', 'a string with "quotes" and \n new line')
+</code></pre>
+<p>may produce the string:</p>
+<pre><code>"a string with \"quotes\" and \
+  new line"
+</code></pre>
+<p>Options A and a (when available), E, e, f, G, and g all expect a number as argument. Options c, d, i, o, u, X, and x also expect a number, but the range of that number may be limited by the underlying C implementation. For options o, u, X, and x, the number cannot be negative. Option q expects a string; option s expects a string without embedded zeros. If the argument to option s is not a string, it is converted to one following the same rules of tostring.</p>
+<hr />
+<h4 id="debugs">debug(s)</h4>
+<p>Turn on debugging if passed any of the strings <code>yes</code>, <code>Yes</code>, <code>true,</code> or <code>True</code>.</p>
+<hr />
+<h4 id="tests">test(s)</h4>
+<p>Turn on dry-run mode if passed any of the strings <code>yes</code>, <code>Yes</code>, <code>true</code>, or <code>True</code>.</p>
+<hr />
+<h4 id="syslogs">syslog(s)</h4>
+<p>Turn on syslogging if passed any of the strings <code>yes</code>, <code>Yes</code>, <code>true</code>, or <code>True</code>.</p>
+<hr />
+<h4 id="logs">log(s)</h4>
+<p>Turn on logging to a file.</p>
+<p>The string <code>s</code> is the path to a file.</p>
+<hr />
+<h4 id="includes">include(s)</h4>
+<p>Include another Configi policy.</p>
+<p>The string <code>s</code> is the path to a file.</p>
+</div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <p>Copyright &copy; 2015, <a href="https://twitter.com/tongson">Eduardo Tongson</a>.</p>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/base.js"></script>
+    </body>
+</html>

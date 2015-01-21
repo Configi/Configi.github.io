@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="http://www.configi.org/reference/module_functions/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+        <title>Module Functions - Configi</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Configi</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../license">License</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../download">Download</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            <li >
+                                <a href="../about_modules">About Modules</a>
+                            </li>
+                        
+                            <li >
+                                <a href="../policy_functions">Policy Functions</a>
+                            </li>
+                        
+                            <li class="active">
+                                <a href=".">Module Functions</a>
+                            </li>
+                        
+                            <li >
+                                <a href="../cli">CLI</a>
+                            </li>
+                        
+                            <li >
+                                <a href="../glossary">Glossary</a>
+                            </li>
+                        
+                            <li >
+                                <a href="../gotchas">Gotchas</a>
+                            </li>
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                
+                <li >
+                    <a rel="next" href="../policy_functions">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../cli">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                
+                <li>
+                    <a href="https://github.com/tongson/Configi">
+                        
+                            <i class="fa fa-github"></i>
+                        
+                        GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#module-functions">Module Functions</a></li>
+        
+            <li><a href="#msgs-s-b">msg(s, s, b)</a></li>
+        
+            <li><a href="#runf-a">run(f, a)</a></li>
+        
+            <li><a href="#xrunf-a">xrun(f, a)</a></li>
+        
+            <li><a href="#openu">open(u)</a></li>
+        
+            <li><a href="#skips">skip(s)</a></li>
+        
+            <li><a href="#resultb-s">result(b, s)</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="module-functions">Module Functions</h1>
+<p>This functions are available for modules.</p>
+<p>They are usually returned by the <code>F</code> table as returned by <code>main()</code>. So <code>msg()</code> is <code>F.msg()</code></p>
+<hr />
+<h4 id="msgs-s-b">msg(s, s, b)</h4>
+<p>Given a string as the first argument, it becomes the <code>item</code> field in the Configi messages. A string as second argument becomes the primary message for the operation as shown in the Configi messages and syslog. The boolean third argument indicates the operation status.</p>
+<table>
+<thead>
+<tr>
+<th>Boolean</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>true</td>
+<td>success</td>
+</tr>
+<tr>
+<td>false</td>
+<td>fail</td>
+</tr>
+<tr>
+<td>nil</td>
+<td>skip</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="runf-a">run(f, a)</h4>
+<p>Wraps the function(argument) and modifies the execution depending on the status of the debug (-v) and/or test (-t) flags.</p>
+<p>When debug is on, it add timing information for each operation. If test is on, operations are a noop.</p>
+<hr />
+<h4 id="xrunf-a">xrun(f, a)</h4>
+<p>Same as <code>run</code> but always assumes that debug is on.</p>
+<hr />
+<h4 id="openu">open(u)</h4>
+<p>Wraps <code>Cimicida.fopen</code> so the open operation is relative to the path of the policy location.</p>
+<hr />
+<h4 id="skips">skip(s)</h4>
+<p>Usually used when returning from a module function eg. <code>return F.skip(s)</code>. Enables handling of the <code>notify_kept</code> parameter and returns the result as if the promise is kept.</p>
+<hr />
+<h4 id="resultb-s">result(b, s)</h4>
+<p>Usually used when returning from a module function eg. <code>return F.result(b, s)</code>. Depending on the boolean return value of the first argument. If <code>true</code> then it enables the handling of the <code>notify</code> parameter and returns the result as if the promise was repaired. If <code>false</code> then it enables the handling of the <code>notify_failed</code> parameter and returns the result as if the promise failed.</p>
+</div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <p>Copyright &copy; 2015, <a href="https://twitter.com/tongson">Eduardo Tongson</a>.</p>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/base.js"></script>
+    </body>
+</html>
