@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Configi Modules documentation</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Configi</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/apk.html">apk</a></li>
+  <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
+  <li><a href="../modules/cron.html">cron</a></li>
+  <li><a href="../modules/file.html">file</a></li>
+  <li><a href="../modules/git.html">git</a></li>
+  <li><a href="../modules/hostname.html">hostname</a></li>
+  <li><a href="../modules/openrc.html">openrc</a></li>
+  <li><a href="../modules/opkg.html">opkg</a></li>
+  <li><a href="../modules/portage.html">portage</a></li>
+  <li><a href="../modules/shell.html">shell</a></li>
+  <li><strong>systemd</strong></li>
+  <li><a href="../modules/sysvinit.html">sysvinit</a></li>
+  <li><a href="../modules/textfile.html">textfile</a></li>
+  <li><a href="../modules/unarchive.html">unarchive</a></li>
+  <li><a href="../modules/user.html">user</a></li>
+  <li><a href="../modules/yum.html">yum</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>systemd</code></h1>
+<p>Ensure that a service managed by systemd-systemctl is started or stopped.</p>
+<p>
+
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>License</strong>: MIT <a href="http://opensource.org/licenses/MIT">http://opensource.org/licenses/MIT</a></li>
+        <li><strong>Author</strong>: Eduardo Tongson <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;p&#114;&#x6f;&#112;&#x6f;&#108;&#x69;&#99;&#x65;&#64;&#x67;m&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x70;&#114;&#x6f;&#112;&#x6f;&#108;&#x69;c&#101;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;c&#111;&#x6d;</a></li>
+        <li><strong>Added</strong>: 0.9.0</li>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#started">started [[service]]</a></td>
+	<td class="summary">Start a service.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#stopped">stopped [[service]]</a></td>
+	<td class="summary">Stop a service.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#restart">restart [[service]]</a></td>
+	<td class="summary">Restart a service.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#reload">reload [[service]]</a></td>
+	<td class="summary">Reload a service.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#enabled">enabled [[service]]</a></td>
+	<td class="summary">Enable a service.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#disabled">disabled [[service]]</a></td>
+	<td class="summary">Disable a service.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "started"></a>
+    <strong>started [[service]]</strong>
+    </dt>
+    <dd>
+    Start a service.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">service</span>
+         service to start [REQUIRED]
+        </li>
+    </ul>
+
+
+
+
+    <h3>Aliases:</h3>
+    <ul>
+        present
+    </ul>
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> systemd.started <span class="string">[[
+   service "rsyncd"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "stopped"></a>
+    <strong>stopped [[service]]</strong>
+    </dt>
+    <dd>
+    Stop a service.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">service</span>
+         service to stop [REQUIRED]
+        </li>
+    </ul>
+
+
+
+
+    <h3>Aliases:</h3>
+    <ul>
+        absent
+    </ul>
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> systemd.stopped <span class="string">[[
+   service "rsyncd"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "restart"></a>
+    <strong>restart [[service]]</strong>
+    </dt>
+    <dd>
+    Restart a service.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">service</span>
+         service to restart [REQUIRED]
+        </li>
+    </ul>
+
+
+
+
+
+    <h3>Note:</h3>
+    <ul>
+        skips restart <span class="keyword">if</span> service is <span class="keyword">not</span> yet active.
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> systemd.restart <span class="string">[[
+   service "rsyncd"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "reload"></a>
+    <strong>reload [[service]]</strong>
+    </dt>
+    <dd>
+    Reload a service.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">service</span>
+         service to reload [REQUIRED]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> systemd.reload <span class="string">[[
+   service "sshd"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "enabled"></a>
+    <strong>enabled [[service]]</strong>
+    </dt>
+    <dd>
+    Enable a service.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">service</span>
+         service to enable [REQUIRED]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> systemd.enabled <span class="string">[[
+   service "rsyncd"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "disabled"></a>
+    <strong>disabled [[service]]</strong>
+    </dt>
+    <dd>
+    Disable a service.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">service</span>
+         service to disable [REQUIRED]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> systemd.disabled <span class="string">[[
+   service "rsyncd"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2015-01-21 09:19:40 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

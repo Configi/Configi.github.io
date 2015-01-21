@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Configi Modules documentation</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Configi</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/apk.html">apk</a></li>
+  <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
+  <li><a href="../modules/cron.html">cron</a></li>
+  <li><a href="../modules/file.html">file</a></li>
+  <li><a href="../modules/git.html">git</a></li>
+  <li><a href="../modules/hostname.html">hostname</a></li>
+  <li><a href="../modules/openrc.html">openrc</a></li>
+  <li><a href="../modules/opkg.html">opkg</a></li>
+  <li><a href="../modules/portage.html">portage</a></li>
+  <li><strong>shell</strong></li>
+  <li><a href="../modules/systemd.html">systemd</a></li>
+  <li><a href="../modules/sysvinit.html">sysvinit</a></li>
+  <li><a href="../modules/textfile.html">textfile</a></li>
+  <li><a href="../modules/unarchive.html">unarchive</a></li>
+  <li><a href="../modules/user.html">user</a></li>
+  <li><a href="../modules/yum.html">yum</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>shell</code></h1>
+<p>Shell operations.</p>
+<p>
+
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>License</strong>: MIT <a href="http://opensource.org/licenses/MIT">http://opensource.org/licenses/MIT</a></li>
+        <li><strong>Author</strong>: Eduardo Tongson <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;p&#114;&#x6f;&#112;&#x6f;&#108;&#x69;&#99;&#x65;&#64;&#x67;m&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x70;&#114;&#x6f;&#112;&#x6f;&#108;&#x69;c&#101;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;c&#111;&#x6d;</a></li>
+        <li><strong>Added</strong>: 0.9.0</li>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#command">command [[string, cwd, env, creates, removes]]</a></td>
+	<td class="summary">Run a command via execve(3).</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#system">system [[string, creates, removes]]</a></td>
+	<td class="summary">Run a script or command via os.execute.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#popen">popen [[string, cwd, creates, removes, expects]]</a></td>
+	<td class="summary">Run a command via io.popen.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#popen3">popen3 [[string, cwd, env, creates, removes, stdin, stdout, stderr, error]]</a></td>
+	<td class="summary">Run a command via Px.exec which can expect strings from STDIN, STDOUT or STDERR</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "command"></a>
+    <strong>command [[string, cwd, env, creates, removes]]</strong>
+    </dt>
+    <dd>
+    Run a command via execve(3).
+ shell.command [[
+   cwd "/tmp"
+   env "test=this whatever=youwant"
+   command "touch test"
+   creates "test"
+ ]]
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">string</span>
+         command to execute [REQUIRED] [ALIAS: command]
+        </li>
+        <li><span class="parameter">cwd</span>
+         current working directory
+        </li>
+        <li><span class="parameter">env</span>
+         space separated environment variables
+        </li>
+        <li><span class="parameter">creates</span>
+         a filename, if found will not run the command
+        </li>
+        <li><span class="parameter">removes</span>
+         a filename, if not found will not run the command
+        </li>
+    </ul>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "system"></a>
+    <strong>system [[string, creates, removes]]</strong>
+    </dt>
+    <dd>
+    Run a script or command via os.execute.
+ <br />
+ STDIN and STDERR are closed and STDOUT is piped to /dev/null
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">string</span>
+         script or command to execute [REQUIRED] [ALIAS: script,command]
+        </li>
+        <li><span class="parameter">creates</span>
+         a filename, if found will not run the script
+        </li>
+        <li><span class="parameter">removes</span>
+         a filename, if not found will not run the script
+        </li>
+    </ul>
+
+
+
+
+    <h3>Aliases:</h3>
+    <ul>
+        script
+    </ul>
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> shell.system <span class="string">[[
+   script "/root/test.sh"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "popen"></a>
+    <strong>popen [[string, cwd, creates, removes, expects]]</strong>
+    </dt>
+    <dd>
+    Run a command via io.popen.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">string</span>
+         command to execute [REQUIRED] [ALIAS: command]
+        </li>
+        <li><span class="parameter">cwd</span>
+         current working directory
+        </li>
+        <li><span class="parameter">creates</span>
+         a filename, if found will not run the command
+        </li>
+        <li><span class="parameter">removes</span>
+         a filename, if not found will not run the command
+        </li>
+        <li><span class="parameter">expects</span>
+         instead of the exit code, use a string match as a test for success
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> shell.popen <span class="string">[[
+   cwd "/tmp"
+   command "ls -la"
+   expects ".X11-unix"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "popen3"></a>
+    <strong>popen3 [[string, cwd, env, creates, removes, stdin, stdout, stderr, error]]</strong>
+    </dt>
+    <dd>
+    Run a command via Px.exec which can expect strings from STDIN, STDOUT or STDERR
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">string</span>
+         command to execute [REQUIRED] [ALIAS: command]
+        </li>
+        <li><span class="parameter">cwd</span>
+         current working directory
+        </li>
+        <li><span class="parameter">env</span>
+         space separated string of environment variables
+        </li>
+        <li><span class="parameter">creates</span>
+         a filename, if found will not run the command
+        </li>
+        <li><span class="parameter">removes</span>
+         a filename, if not found will not run the command
+        </li>
+        <li><span class="parameter">stdin</span>
+         pipe a string from STDIN
+        </li>
+        <li><span class="parameter">stdout</span>
+         test for a string from STDOUT
+        </li>
+        <li><span class="parameter">stderr</span>
+         test for a string from STDERR
+        </li>
+        <li><span class="parameter">error</span>
+         ignore errors when set to "ignore" [CHOICES: "yes","no"]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> shell.popen3 <span class="string">[[
+   cwd "/tmp"
+   command "ls"
+   stdout ".X11-unix"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2015-01-21 09:19:40 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

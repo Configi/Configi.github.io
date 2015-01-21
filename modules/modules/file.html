@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Configi Modules documentation</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Configi</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/apk.html">apk</a></li>
+  <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
+  <li><a href="../modules/cron.html">cron</a></li>
+  <li><strong>file</strong></li>
+  <li><a href="../modules/git.html">git</a></li>
+  <li><a href="../modules/hostname.html">hostname</a></li>
+  <li><a href="../modules/openrc.html">openrc</a></li>
+  <li><a href="../modules/opkg.html">opkg</a></li>
+  <li><a href="../modules/portage.html">portage</a></li>
+  <li><a href="../modules/shell.html">shell</a></li>
+  <li><a href="../modules/systemd.html">systemd</a></li>
+  <li><a href="../modules/sysvinit.html">sysvinit</a></li>
+  <li><a href="../modules/textfile.html">textfile</a></li>
+  <li><a href="../modules/unarchive.html">unarchive</a></li>
+  <li><a href="../modules/user.html">user</a></li>
+  <li><a href="../modules/yum.html">yum</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>file</code></h1>
+<p>File operations.</p>
+<p>
+
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>License</strong>: MIT <a href="http://opensource.org/licenses/MIT">http://opensource.org/licenses/MIT</a></li>
+        <li><strong>Author</strong>: Eduardo Tongson <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;p&#114;&#x6f;&#112;&#x6f;&#108;&#x69;&#99;&#x65;&#64;&#x67;m&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x70;&#114;&#x6f;&#112;&#x6f;&#108;&#x69;c&#101;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;c&#111;&#x6d;</a></li>
+        <li><strong>Added</strong>: 0.9.0</li>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#attributes">attributes [[path, mode, owner, group]]</a></td>
+	<td class="summary">Set path attributes such as the mode, owner or group.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#link">link [[path, src, force]]</a></td>
+	<td class="summary">Create a symlink.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#hard">hard [[path, src, force]]</a></td>
+	<td class="summary">Create a hard link.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#directory">directory [[path, mode, owner, group, force, backup]]</a></td>
+	<td class="summary">Create a directory.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#touch">touch [[path, mode, owner, group]]</a></td>
+	<td class="summary">Touch a path.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#absent">absent [[path]]</a></td>
+	<td class="summary">Remove a path.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#copy">copy [[path, src, recurse, force, backup]]</a></td>
+	<td class="summary">Copy a path.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "attributes"></a>
+    <strong>attributes [[path, mode, owner, group]]</strong>
+    </dt>
+    <dd>
+    Set path attributes such as the mode, owner or group.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+         path to modify [REQUIRED]
+        </li>
+        <li><span class="parameter">mode</span>
+         set the file mode bits
+        </li>
+        <li><span class="parameter">owner</span>
+         set the uid/owner [ALIAS: uid]
+        </li>
+        <li><span class="parameter">group</span>
+         set the gid/group [ALIAS: gid]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> file.attributes <span class="string">[[
+   path "/etc/shadow"
+   mode "0600"
+   owner "root"
+   group "root"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "link"></a>
+    <strong>link [[path, src, force]]</strong>
+    </dt>
+    <dd>
+    Create a symlink.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+         path where the symlink points to [REQUIRED] [ALIAS: dest,target]
+        </li>
+        <li><span class="parameter">src</span>
+         the symlink [REQUIRED]
+        </li>
+        <li><span class="parameter">force</span>
+         remove existing symlink [CHOICES: "yes","no"]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> file.link <span class="string">[[
+   src "/home/ed/root"
+   path "/"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "hard"></a>
+    <strong>hard [[path, src, force]]</strong>
+    </dt>
+    <dd>
+    Create a hard link.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+         path where the hard link points to [REQUIRED] [ALIAS: dest,target]
+        </li>
+        <li><span class="parameter">src</span>
+         the hard link [REQUIRED]
+        </li>
+        <li><span class="parameter">force</span>
+         remove existing hard link [CHOICES: "yes","no"]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> file.hard <span class="string">[[
+   src "/home/ed/root"
+   path "/"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "directory"></a>
+    <strong>directory [[path, mode, owner, group, force, backup]]</strong>
+    </dt>
+    <dd>
+    Create a directory.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+         path of the directory [REQUIRED]
+        </li>
+        <li><span class="parameter">mode</span>
+         set the file mode bits
+        </li>
+        <li><span class="parameter">owner</span>
+         set the uid/owner [ALIAS: uid]
+        </li>
+        <li><span class="parameter">group</span>
+         set the gid/group [ALIAS: gid]
+        </li>
+        <li><span class="parameter">force</span>
+         remove existing path before creating directory [CHOICES: "yes","no"] [DEFAULT: "no"]
+        </li>
+        <li><span class="parameter">backup</span>
+         rename existing path and prepend '.<em>configi</em>' to the name [CHOICES: "yes","no"] [DEFAULT: "no"]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> file.directory <span class="string">[[
+   path "/usr/portage"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "touch"></a>
+    <strong>touch [[path, mode, owner, group]]</strong>
+    </dt>
+    <dd>
+    Touch a path.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+         path to 'touch' [REQUIRED]
+        </li>
+        <li><span class="parameter">mode</span>
+         set the file mode bits
+        </li>
+        <li><span class="parameter">owner</span>
+         set the uid/owner [ALIAS: uid]
+        </li>
+        <li><span class="parameter">group</span>
+         set the gid/group [ALIAS: gid]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> file.touch <span class="string">[[
+   path "/srv/.keep"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "absent"></a>
+    <strong>absent [[path]]</strong>
+    </dt>
+    <dd>
+    Remove a path.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+         path to delete [REQUIRED]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> file.absent <span class="string">[[
+   path "/home/ed/.xinitrc"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "copy"></a>
+    <strong>copy [[path, src, recurse, force, backup]]</strong>
+    </dt>
+    <dd>
+    Copy a path.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+         destination path [REQUIRED] [ALIAS: dest,target]
+        </li>
+        <li><span class="parameter">src</span>
+         source path to copy [REQUIRED]
+        </li>
+        <li><span class="parameter">recurse</span>
+         recursively copy source [CHOICES: "yes","no"] [DEFAULT: "no"]
+        </li>
+        <li><span class="parameter">force</span>
+         remove existing destination before copying [CHOICES: "yes","no"] [DEFAULT: "no"]
+        </li>
+        <li><span class="parameter">backup</span>
+         rename existing path and prepend '.<em>configi</em>' to the name [CHOICES: "yes","no"] [DEFAULT: "no"]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> file.copy <span class="string">[[
+   src "/home/ed"
+   dest "/mnt/backups"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2015-01-21 09:19:40 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

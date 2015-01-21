@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Configi Modules documentation</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Configi</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/apk.html">apk</a></li>
+  <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
+  <li><strong>cron</strong></li>
+  <li><a href="../modules/file.html">file</a></li>
+  <li><a href="../modules/git.html">git</a></li>
+  <li><a href="../modules/hostname.html">hostname</a></li>
+  <li><a href="../modules/openrc.html">openrc</a></li>
+  <li><a href="../modules/opkg.html">opkg</a></li>
+  <li><a href="../modules/portage.html">portage</a></li>
+  <li><a href="../modules/shell.html">shell</a></li>
+  <li><a href="../modules/systemd.html">systemd</a></li>
+  <li><a href="../modules/sysvinit.html">sysvinit</a></li>
+  <li><a href="../modules/textfile.html">textfile</a></li>
+  <li><a href="../modules/unarchive.html">unarchive</a></li>
+  <li><a href="../modules/user.html">user</a></li>
+  <li><a href="../modules/yum.html">yum</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>cron</code></h1>
+<p>Ensure that a cron job is present or absent in a user's crontab.</p>
+<p> <br />
+ Only tested with vixie-cron and Busybox cron.</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>License</strong>: MIT <a href="http://opensource.org/licenses/MIT">http://opensource.org/licenses/MIT</a></li>
+        <li><strong>Author</strong>: Eduardo Tongson <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;p&#114;&#x6f;&#112;&#x6f;&#108;&#x69;&#99;&#x65;&#64;&#x67;m&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x70;&#114;&#x6f;&#112;&#x6f;&#108;&#x69;c&#101;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;c&#111;&#x6d;</a></li>
+        <li><strong>Added</strong>: 0.9.0</li>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#present">present [[name, job, user, minute, hour, day, weekday, month]]</a></td>
+	<td class="summary">Add a job to a user's crontab.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#absent">absent [[name, job, user]]</a></td>
+	<td class="summary">Remove a job from a user's crontab.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "present"></a>
+    <strong>present [[name, job, user, minute, hour, day, weekday, month]]</strong>
+    </dt>
+    <dd>
+    Add a job to a user's crontab.  <br />
+ Cron jobs that does not match its tag are replaced. <br />
+ See crontab(5)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         tag to track jobs [REQUIRED]
+        </li>
+        <li><span class="parameter">job</span>
+         the command or job to add [REQUIRED]
+        </li>
+        <li><span class="parameter">user</span>
+         user login to operate on [DEFAULT: "root"]
+        </li>
+        <li><span class="parameter">minute</span>
+         minute value [DEFAULT: "*"]
+        </li>
+        <li><span class="parameter">hour</span>
+         hour value [DEFAULT: "*"]
+        </li>
+        <li><span class="parameter">day</span>
+         day value [DEFAULT: "*"]
+        </li>
+        <li><span class="parameter">weekday</span>
+         weekday value [DEFAULT: "*"]
+        </li>
+        <li><span class="parameter">month</span>
+         month value [DEFAULT: "*"]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> cron.present [[
+   name <span class="string">"example"</span>
+   job <span class="string">"/bin/ls"</span>
+   minute <span class="string">"5"</span>
+   hour <span class="string">"3"</span>
+   day <span class="string">"2"</span>
+   weekday <span class="string">"2"</span>
+   month <span class="string">"5"</span>
+   user <span class="string">"ed"</span>
+ ]</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "absent"></a>
+    <strong>absent [[name, job, user]]</strong>
+    </dt>
+    <dd>
+    Remove a job from a user's crontab.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         tag string [REQUIRED]
+        </li>
+        <li><span class="parameter">job</span>
+         the command or job string [REQUIRED]
+        </li>
+        <li><span class="parameter">user</span>
+         user login to operate on [DEFAULT: "root"]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> cron.present <span class="string">[[
+   name "example"
+   job "/bin/ls"
+   user "ed"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2015-01-21 09:19:40 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

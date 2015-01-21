@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Configi Modules documentation</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Configi</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/apk.html">apk</a></li>
+  <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
+  <li><a href="../modules/cron.html">cron</a></li>
+  <li><a href="../modules/file.html">file</a></li>
+  <li><a href="../modules/git.html">git</a></li>
+  <li><a href="../modules/hostname.html">hostname</a></li>
+  <li><a href="../modules/openrc.html">openrc</a></li>
+  <li><a href="../modules/opkg.html">opkg</a></li>
+  <li><a href="../modules/portage.html">portage</a></li>
+  <li><a href="../modules/shell.html">shell</a></li>
+  <li><a href="../modules/systemd.html">systemd</a></li>
+  <li><a href="../modules/sysvinit.html">sysvinit</a></li>
+  <li><strong>textfile</strong></li>
+  <li><a href="../modules/unarchive.html">unarchive</a></li>
+  <li><a href="../modules/user.html">user</a></li>
+  <li><a href="../modules/yum.html">yum</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>textfile</code></h1>
+<p>Render a textfile using Lustache.</p>
+<p> <br />
+ See: <a href="https://github.com/Olivine-Labs/lustache">https://github.com/Olivine-Labs/lustache</a></p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> textfile.render [[
+   template &quot;/etc/something/config.template&quot;
+   dest &quot;/etc/something/config&quot;
+   view &quot;view_model&quot;
+   data &quot;/etc/something/config.lua&quot;
+   force &quot;true&quot;
+ ]]</pre>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#insert_line">insert_line [[path, line, inserts, pattern, plain, before, after]]</a></td>
+	<td class="summary">Insert lines into an existing file.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#remove_line">remove_line [[path, pattern, plain]]</a></td>
+	<td class="summary">Remove lines from an existing file.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "insert_line"></a>
+    <strong>insert_line [[path, line, inserts, pattern, plain, before, after]]</strong>
+    </dt>
+    <dd>
+    Insert lines into an existing file.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+         path of textfile to modify [REQUIRED] [ALIAS: dest,file,textfile]
+        </li>
+        <li><span class="parameter">line</span>
+         text to insert [REQUIRED] [ALIAS: text]
+        </li>
+        <li><span class="parameter">inserts</span>
+         a line (string) if found, skips the operation
+        </li>
+        <li><span class="parameter">pattern</span>
+         line is added before or after this pattern [ALIAS: match]
+        </li>
+        <li><span class="parameter">plain</span>
+         turn off pattern matching facilities [CHOICES: "yes","no"] [DEFAULT: "no"]
+        </li>
+        <li><span class="parameter">before</span>
+         [CHOICES: "yes","no"] [DEFAULT: "no"]
+        </li>
+        <li><span class="parameter">after</span>
+         [CHOICES: "yes","no"] [DEFAULT: "yes"]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> textfile.insert_line <span class="string">[[
+   path "/etc/sysctl.conf"
+   pattern "# http://cr.yp.to/syncookies.html"
+   text "net.ipv4.tcp_syncookies = 1"
+   after "true"
+   plain "true"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "remove_line"></a>
+    <strong>remove_line [[path, pattern, plain]]</strong>
+    </dt>
+    <dd>
+    Remove lines from an existing file.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+         path of textfile to modify [REQUIRED] [ALIAS: dest,file,textfile]
+        </li>
+        <li><span class="parameter">pattern</span>
+         text pattern to remove [REQUIRED] [ALIAS: match]
+        </li>
+        <li><span class="parameter">plain</span>
+         turn off pattern matching facilities [CHOICES: "yes","no"] [DEFAULT: "no"]
+        </li>
+    </ul>
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> textfile.remove_line <span class="string">[[
+   path "/etc/sysctl.conf"
+   match "net.ipv4.ip_forward = 1"
+   plain "true"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2015-01-21 09:19:40 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

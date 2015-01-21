@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Configi Modules documentation</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Configi</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/apk.html">apk</a></li>
+  <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
+  <li><a href="../modules/cron.html">cron</a></li>
+  <li><a href="../modules/file.html">file</a></li>
+  <li><a href="../modules/git.html">git</a></li>
+  <li><a href="../modules/hostname.html">hostname</a></li>
+  <li><a href="../modules/openrc.html">openrc</a></li>
+  <li><a href="../modules/opkg.html">opkg</a></li>
+  <li><strong>portage</strong></li>
+  <li><a href="../modules/shell.html">shell</a></li>
+  <li><a href="../modules/systemd.html">systemd</a></li>
+  <li><a href="../modules/sysvinit.html">sysvinit</a></li>
+  <li><a href="../modules/textfile.html">textfile</a></li>
+  <li><a href="../modules/unarchive.html">unarchive</a></li>
+  <li><a href="../modules/user.html">user</a></li>
+  <li><a href="../modules/yum.html">yum</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>portage</code></h1>
+<p>Ensure that a package managed by Portage is installed or absent.</p>
+<p>
+
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>License</strong>: MIT <a href="http://opensource.org/licenses/MIT">http://opensource.org/licenses/MIT</a></li>
+        <li><strong>Author</strong>: Eduardo Tongson <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;p&#114;&#x6f;&#112;&#x6f;&#108;&#x69;&#99;&#x65;&#64;&#x67;m&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x70;&#114;&#x6f;&#112;&#x6f;&#108;&#x69;c&#101;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;c&#111;&#x6d;</a></li>
+        <li><strong>Added</strong>: 0.9.0</li>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#present">present [[atom, version, deep, newuse, nodeps, noreplace, oneshot, onlydeps, sync, update, unmask]]</a></td>
+	<td class="summary">Install package atom.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#absent">absent [[atom, depclean]]</a></td>
+	<td class="summary">Remove package atom.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "present"></a>
+    <strong>present [[atom, version, deep, newuse, nodeps, noreplace, oneshot, onlydeps, sync, update, unmask]]</strong>
+    </dt>
+    <dd>
+    Install package atom.
+ See emerge(1).
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">atom</span>
+         package atom to install. Can be "category/package" or "category/package-version" [REQUIRED] [ALIAS: package]
+        </li>
+        <li><span class="parameter">version</span>
+         package version
+        </li>
+        <li><span class="parameter">deep</span>
+         evaluate entire dependency tree [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">newuse</span>
+         reinstall packages that had a change in its USE flags [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">nodeps</span>
+         do not merge dependencies [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">noreplace</span>
+         skip already installed packages [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">oneshot</span>
+         do not update the world file [CHOICES: "yes","no"] [DEFAULT: "yes"]
+        </li>
+        <li><span class="parameter">onlydeps</span>
+         only merge dependencies [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">sync</span>
+         perform an <code>emerge --sync</code> before installing package(s) [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">update</span>
+         update package to the best version [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">unmask</span>
+         enable auto-unmask and auto-unmask-write options [CHOICES: "yes","no"]
+        </li>
+    </ul>
+
+
+
+
+    <h3>Aliases:</h3>
+    <ul>
+        <li>installed</li>
+        <li>install</li>
+    </ul>
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> portage.present <span class="string">[[
+   package "dev-util/strace"
+   version "4.8"
+ ]]</span>
+ portage.present <span class="string">[[
+   atom "=dev-util/strace-4.8"
+ ]]</span>
+ portage.present <span class="string">[[
+   package "dev-util/strace"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "absent"></a>
+    <strong>absent [[atom, depclean]]</strong>
+    </dt>
+    <dd>
+    Remove package atom.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">atom</span>
+         package atom to unmerge [REQUIRED] [ALIAS: package]
+        </li>
+        <li><span class="parameter">depclean</span>
+         Remove packages not associated with explicitly installed packages [CHOICES: "yes","no"] [DEFAULT: "no"]
+        </li>
+    </ul>
+
+
+
+
+    <h3>Aliases:</h3>
+    <ul>
+        remove
+    </ul>
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> portage.absent <span class="string">[[
+   atom "dev-util/atom"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2015-01-21 09:19:40 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

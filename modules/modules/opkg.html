@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Configi Modules documentation</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Configi</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/apk.html">apk</a></li>
+  <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
+  <li><a href="../modules/cron.html">cron</a></li>
+  <li><a href="../modules/file.html">file</a></li>
+  <li><a href="../modules/git.html">git</a></li>
+  <li><a href="../modules/hostname.html">hostname</a></li>
+  <li><a href="../modules/openrc.html">openrc</a></li>
+  <li><strong>opkg</strong></li>
+  <li><a href="../modules/portage.html">portage</a></li>
+  <li><a href="../modules/shell.html">shell</a></li>
+  <li><a href="../modules/systemd.html">systemd</a></li>
+  <li><a href="../modules/sysvinit.html">sysvinit</a></li>
+  <li><a href="../modules/textfile.html">textfile</a></li>
+  <li><a href="../modules/unarchive.html">unarchive</a></li>
+  <li><a href="../modules/user.html">user</a></li>
+  <li><a href="../modules/yum.html">yum</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>opkg</code></h1>
+<p>Ensure that a package managed by Opkg is installed or absent.</p>
+<p>
+
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>License</strong>: MIT <a href="http://opensource.org/licenses/MIT">http://opensource.org/licenses/MIT</a></li>
+        <li><strong>Author</strong>: Eduardo Tongson <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;p&#114;&#x6f;&#112;&#x6f;&#108;&#x69;&#99;&#x65;&#64;&#x67;m&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x70;&#114;&#x6f;&#112;&#x6f;&#108;&#x69;c&#101;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;c&#111;&#x6d;</a></li>
+        <li><strong>Added</strong>: 0.9.0</li>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#present">present [[package, force_depends, force_reinstall, force_overwrite, force_downgrade, force_maintainer, nodeps, proxy, update]]</a></td>
+	<td class="summary">Install a package.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#absent">absent [[package, force_depends, force_remove, autoremove, force_removal_of_dependent_packages]]</a></td>
+	<td class="summary">Uninstall a package.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "present"></a>
+    <strong>present [[package, force_depends, force_reinstall, force_overwrite, force_downgrade, force_maintainer, nodeps, proxy, update]]</strong>
+    </dt>
+    <dd>
+    Install a package.
+ See <code>opkg --help</code>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">package</span>
+         package to install [REQUIRED]
+        </li>
+        <li><span class="parameter">force_depends</span>
+         install despite failed dependencies [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">force_reinstall</span>
+         reinstall package [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">force_overwrite</span>
+         overwrite files from other packages [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">force_downgrade</span>
+         Allow downgrading packages [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">force_maintainer</span>
+         Overwrite existing config files [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">nodeps</span>
+         Do not install dependencies [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">proxy</span>
+         HTTP proxy to use for connections
+        </li>
+        <li><span class="parameter">update</span>
+         update package [CHOICES: "yes","no"]
+        </li>
+    </ul>
+
+
+
+
+    <h3>Aliases:</h3>
+    <ul>
+        <li>installed</li>
+        <li>install</li>
+    </ul>
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> opkg.present <span class="string">[[
+   package "strace"
+   update "yes"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "absent"></a>
+    <strong>absent [[package, force_depends, force_remove, autoremove, force_removal_of_dependent_packages]]</strong>
+    </dt>
+    <dd>
+    Uninstall a package.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">package</span>
+         package to remove [REQUIRED]
+        </li>
+        <li><span class="parameter">force_depends</span>
+         remove despite failed dependencies [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">force_remove</span>
+         Remove packages even if prerm hook fails [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">autoremove</span>
+         Remove packages that were installed to satisfy dependencies [CHOICES: "yes","no"]
+        </li>
+        <li><span class="parameter">force_removal_of_dependent_packages</span>
+         Remove package and all dependencies [CHOICES: "yes","no"]
+        </li>
+    </ul>
+
+
+
+
+    <h3>Aliases:</h3>
+    <ul>
+        <li>removed</li>
+        <li>remove</li>
+    </ul>
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"> opkg.absent <span class="string">[[
+   package "ncurses"
+   force_remove "yes"
+ ]]</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2015-01-21 09:19:40 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

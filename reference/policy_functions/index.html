@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.configi.org/reference/policy_functions/">
+        <link rel="canonical" href="http://configi.org/reference/policy_functions/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
         <title>Policy Functions - Configi</title>
@@ -97,6 +97,12 @@
                     </li>
                 
                 
+                
+                    <li >
+                        <a href="../../modules">Module Documentation</a>
+                    </li>
+                
+                
                 </ul>
             
 
@@ -118,7 +124,7 @@
                 
                 
                 <li>
-                    <a href="https://github.com/tongson/Configi">
+                    <a href="https://github.com/Configi/configi">
                         
                             <i class="fa fa-github"></i>
                         
@@ -240,8 +246,12 @@ str = [[ this is the {{ field }} ]]
 <p>The string <code>s</code> is the path to a file.</p>
 <hr />
 <h4 id="includes">include(s)</h4>
-<p>Include another Configi policy.</p>
-<p>The string <code>s</code> is the path to a file.</p>
+<p>Include another Configi policy. The string <code>s</code> is the path to a file.</p>
+<p>Included policies are stacked, for example the following policy inserts the contents of <code>test1.lua</code> then <code>test2.lua</code> at the top.</p>
+<pre><code>include "test1.lua"
+include "test2.lua"
+file.touch [[ path "/etc/passwd" ]]
+</code></pre>
 </div>
             
         </div>
@@ -249,7 +259,7 @@ str = [[ this is the {{ field }} ]]
         <footer class="col-md-12">
             <hr>
             
-            <p>Copyright &copy; 2015, <a href="https://twitter.com/tongson">Eduardo Tongson</a>.</p>
+            <p>Copyright &copy; 2015, <a href="https://github.com/tongson">Eduardo Tongson</a>.</p>
             
             <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>

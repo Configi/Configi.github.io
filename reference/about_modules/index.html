@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="http://www.configi.org/reference/about_modules/">
+        <link rel="canonical" href="http://configi.org/reference/about_modules/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
         <title>About Modules - Configi</title>
@@ -97,6 +97,12 @@
                     </li>
                 
                 
+                
+                    <li >
+                        <a href="../../modules">Module Documentation</a>
+                    </li>
+                
+                
                 </ul>
             
 
@@ -118,7 +124,7 @@
                 
                 
                 <li>
-                    <a href="https://github.com/tongson/Configi">
+                    <a href="https://github.com/Configi/configi">
                         
                             <i class="fa fa-github"></i>
                         
@@ -245,7 +251,7 @@ _ENV = ENV
   return Configi.finish(C)
 end
 </code></pre>
-<p>The local function <code>main</code> is called by each module function to initialize the tables and values required to execute a call to a script function. For more information on the <code>S</code>,<code>M</code>,<code>G</code> parameters see the following section about functions.</p>
+<p>The local function <code>main</code> is called by each module function to initialize the tables and values required to execute a call to a script function. For more information on the <code>S</code>,<code>M</code>,<code>G</code> arguments see the following section about functions.</p>
 <p>The <code>required</code> key of the table returned by <code>Configi.start</code> is a table that list the required parameter(s) by <em>all</em> functions of the module. <code>alias</code> is for specifying aliases to the required or valid parameters.</p>
 <p>The <code>main</code> function returns a table (C) that contains the functions (F), parameters (P) and results (R) table that are used inside the module functions.</p>
 <p>Local or internal functions can be declared before or after <code>main</code>.</p>
@@ -266,6 +272,7 @@ end
 end
 </code></pre>
 <p>Functions does the actual execution of commands or call operations that change the state of a host. The structure of a function follows the <code>skip or execute or fail</code> pattern.</p>
+<p>When naming the function, keep in mind that you are going to describe the state of a promise.</p>
 <p>The <code>S</code> argument to the function is the string of parameter-arguments. They are written as <code>parameter "argument"</code> in policies. The <code>main</code> functions passes this string to load() for evaluation.</p>
 <p>The <code>M</code> table is a string array of valid parameters that the function can take.</p>
 <p><code>G</code> is the table of strings used for messages, debugging and logging. G.ok is used for successful operations, G.fail for failures or errors, G.skip for no-change or no-action conditions.</p>
@@ -305,6 +312,22 @@ return example
 <h3 id="notes">Notes</h3>
 <ul>
 <li>
+<p>The list of reserved parameters:</p>
+<ol>
+<li>comment</li>
+<li>debug</li>
+<li>test</li>
+<li>syslog</li>
+<li>log</li>
+<li>handle</li>
+<li>register</li>
+<li>context</li>
+<li>notify</li>
+<li>notify_failed</li>
+<li>notify_kept</li>
+</ol>
+</li>
+<li>
 <p>It is the module's responsibility to determine whether anything needs to be done. An operation that modifies the system state should be convergent.</p>
 </li>
 <li>
@@ -329,7 +352,7 @@ return example
         <footer class="col-md-12">
             <hr>
             
-            <p>Copyright &copy; 2015, <a href="https://twitter.com/tongson">Eduardo Tongson</a>.</p>
+            <p>Copyright &copy; 2015, <a href="https://github.com/tongson">Eduardo Tongson</a>.</p>
             
             <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
