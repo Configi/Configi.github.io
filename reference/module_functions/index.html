@@ -155,7 +155,7 @@
         
             <li><a href="#skips">skip(s)</a></li>
         
-            <li><a href="#resultb-s">result(b, s)</a></li>
+            <li><a href="#results-b-m">result(s, b, m)</a></li>
         
     
     </ul>
@@ -202,10 +202,11 @@
 <p>Wraps <code>Cimicida.fopen</code> so the open operation is relative to the path of the policy location.</p>
 <hr />
 <h4 id="skips">skip(s)</h4>
-<p>Usually used when returning from a module function eg. <code>return F.skip(s)</code>. Enables handling of the <code>notify_kept</code> parameter and returns the result as if the promise is kept.</p>
+<p>Usually used when returning from a module function eg. <code>return F.skip(s)</code>. Enables handling of the <code>notify_kept</code> parameter and returns the result as if the promise is kept or the operation was skipped.</p>
 <hr />
-<h4 id="resultb-s">result(b, s)</h4>
-<p>Usually used when returning from a module function eg. <code>return F.result(b, s)</code>. Depending on the boolean return value of the first argument. If <code>true</code> then it enables the handling of the <code>notify</code> parameter and returns the result as if the promise was repaired. If <code>false</code> then it enables the handling of the <code>notify_failed</code> parameter and returns the result as if the promise failed.</p>
+<h4 id="results-b-m">result(s, b, m)</h4>
+<p>Usually used when returning from a module function eg. <code>return F.result(s, b)</code>. Depending on the boolean return value of the second argument. If <code>true</code> then it enables the handling of the <code>notify</code> parameter and returns the result as if the promise was repaired. If <code>false</code> then it enables the handling of the <code>notify_failed</code> parameter and returns the result as if the promise failed. If <code>nil</code> then it enables the handling of the <code>notify_kept</code> parameter and returns the result as if the promise was kept or the operation was skipped.</p>
+<p>An optional third argument represented as a string can be passed if you want to show a message that is not in the <code>G</code> table.</p>
 </div>
             
         </div>
