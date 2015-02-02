@@ -191,7 +191,7 @@ function example.present (S)
   if Func.done() then
     return F.skip(P.task)
   end
-  return F.result(F.run(Cmd.something{ action = P.task }), P.task)
+  return F.result(P.task, F.run(Cmd.something{ action = P.task }))
 end
 
 example.done = example.present
@@ -268,7 +268,7 @@ end
   if Func.done() then
     return F.skip(P.task)
   end
-  return F.result(F.run(Cmd.something, { action = P.task }), P.task)
+  return F.result(P.task, F.run(Cmd.something, { action = P.task }))
 end
 </code></pre>
 <p>Functions does the actual execution of commands or call operations that change the state of a host. The structure of a function follows the <code>skip or execute or fail</code> pattern.</p>
