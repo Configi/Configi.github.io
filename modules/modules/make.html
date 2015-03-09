@@ -42,10 +42,10 @@
   <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
   <li><a href="../modules/cron.html">cron</a></li>
   <li><a href="../modules/file.html">file</a></li>
-  <li><strong>git</strong></li>
+  <li><a href="../modules/git.html">git</a></li>
   <li><a href="../modules/hostname.html">hostname</a></li>
   <li><a href="../modules/iptables.html">iptables</a></li>
-  <li><a href="../modules/make.html">make</a></li>
+  <li><strong>make</strong></li>
   <li><a href="../modules/openrc.html">openrc</a></li>
   <li><a href="../modules/opkg.html">opkg</a></li>
   <li><a href="../modules/portage.html">portage</a></li>
@@ -63,25 +63,24 @@
 
 <div id="content">
 
-<h1>Module <code>git</code></h1>
-<p>Ensure that a Git repository is cloned into a specified path.</p>
+<h1>Module <code>make</code></h1>
+<p>The <code>configure; make; make install</code> sequence.</p>
 <p>
 
 </p>
-    <h3>Usage:</h3>
+    <h3>Info:</h3>
     <ul>
-        <pre class="example"> git.repo [[
-   repo &quot;https://github.com/torvalds/linux.git&quot;
-   path &quot;/home/user/work&quot;
- ]]</pre>
+        <li><strong>License</strong>: MIT <a href="http://opensource.org/licenses/MIT">http://opensource.org/licenses/MIT</a></li>
+        <li><strong>Author</strong>: Eduardo Tongson <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;p&#114;&#x6f;&#112;&#x6f;&#108;&#x69;&#99;&#x65;&#64;&#x67;m&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x70;&#114;&#x6f;&#112;&#x6f;&#108;&#x69;c&#101;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;c&#111;&#x6d;</a></li>
+        <li><strong>Added</strong>: 0.9.7</li>
     </ul>
 
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#pull">pull [[repository, path]]</a></td>
-	<td class="summary">Run <code>git pull</code> for a repository.</td>
+	<td class="name" nowrap><a href="#install">install [[directory, configure, make, installs, environment]]</a></td>
+	<td class="summary">Install a program via the <code>configure; make; make install</code> sequence of commands.</td>
 	</tr>
 </table>
 
@@ -93,21 +92,29 @@
 
     <dl class="function">
     <dt>
-    <a name = "pull"></a>
-    <strong>pull [[repository, path]]</strong>
+    <a name = "install"></a>
+    <strong>install [[directory, configure, make, installs, environment]]</strong>
     </dt>
     <dd>
-    Run <code>git pull</code> for a repository.
- This always attempts to run the command. Useful as a handler.
+    Install a program via the <code>configure; make; make install</code> sequence of commands.
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">repository</span>
-         The URL of the repository. [ALIAS: url,repo] [REQUIRED]
+        <li><span class="parameter">directory</span>
+         path to directory containing the root of the configure script [REQUIRED]
         </li>
-        <li><span class="parameter">path</span>
-         absolute path where to run the pull command [REQUIRED]
+        <li><span class="parameter">configure</span>
+         options to pass to <code>./configure</code> [ALIAS: options]
+        </li>
+        <li><span class="parameter">make</span>
+         usually DEFINES that it passed to <code>make</code> [ALIAS: defines]
+        </li>
+        <li><span class="parameter">installs</span>
+         path of installed executable. Considered kept if it exists [ALIAS: creates]
+        </li>
+        <li><span class="parameter">environment</span>
+         space delimited string that contains environment variables passed to <code>./configure</code> and <code>make</code> [ALIAS: env]
         </li>
     </ul>
 
@@ -116,13 +123,6 @@
 
 
 
-    <h3>Usage:</h3>
-    <ul>
-        <pre class="example"> git.pull <span class="string">[[
-   repo "https://github.com/torvalds/linux.git"
-   path "/home/user/work"
- ]]</span></pre>
-    </ul>
 
 </dd>
 </dl>

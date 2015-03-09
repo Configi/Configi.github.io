@@ -165,6 +165,8 @@
         
             <li><a href="#includes">include(s)</a></li>
         
+            <li><a href="#eacht-f">each(t, f)</a></li>
+        
     
     </ul>
 </div></div>
@@ -251,6 +253,28 @@ str = [[ this is the {{ field }} ]]
 <pre><code>include "test1.lua"
 include "test2.lua"
 file.touch [[ path "/etc/passwd" ]]
+</code></pre>
+<hr />
+<h3 id="eacht-f">each(t, f)</h3>
+<p>Run a function <code>f</code> against each item from table <code>t</code>.</p>
+<p>The following:</p>
+<pre><code>t = {
+  { path = "test.xxx", comment = "test" },
+  { path = "test.yyy", comment = "test" }
+}
+
+each(t, file.absent)
+</code></pre>
+<p>is equivalent to</p>
+<pre><code>file.absent[[
+  comment "test"
+  path "test.xxx"
+]]
+
+file.absent[[
+  comment "test"
+  path "test.yyy"
+]]
 </code></pre>
 </div>
             

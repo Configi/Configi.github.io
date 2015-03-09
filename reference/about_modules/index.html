@@ -183,13 +183,13 @@ end
 function example.present (S)
   local M = { "task" }
   local G = {
-    ok = "example.present: Ok",
-    skip = "example.present: Skipped",
-    fail = "example.presnet: Error"
+repaired = "example.present: Ok",
+    kept = "example.present: Skipped",
+    failed = "example.presnet: Error"
   }
   local F, P, R = main(S, M, G)
   if Func.done() then
-    return F.skip(P.task)
+    return F.kept(P.task)
   end
   return F.result(P.task, F.run(Cmd.something{ action = P.task }))
 end
@@ -260,13 +260,13 @@ end
 <pre><code>function example.present (S)
   local M = { "task" }
   local G = {
-    ok = "example.present: Ok",
-    skip = "example.present: Skipped",
-    fail = "example.presnet: Error"
+    repaired = "example.present: Ok",
+    kept = "example.present: Skipped",
+    failed = "example.presnet: Error"
   }
   local F, P, R = main(S, M, G)
   if Func.done() then
-    return F.skip(P.task)
+    return F.kept(P.task)
   end
   return F.result(P.task, F.run(Cmd.something, { action = P.task }))
 end
@@ -275,25 +275,25 @@ end
 <p>When naming the function, keep in mind that you are going to describe the state of a promise.</p>
 <p>The <code>S</code> argument to the function is the string of parameter-arguments. They are written as <code>parameter "argument"</code> in policies. The <code>main</code> functions passes this string to load() for evaluation.</p>
 <p>The <code>M</code> table is a string array of valid parameters that the function can take.</p>
-<p><code>G</code> is the table of strings used for messages, debugging and logging. G.ok is used for successful operations, G.fail for failures or errors, G.skip for no-change or no-action conditions.</p>
+<p><code>G</code> is the table of strings used for messages, debugging and logging. G.repaired is used for successful operations, G.failed for failures or errors, G.kept for no-change or no-action conditions.</p>
 <p><code>S</code>, <code>M</code> and <code>G</code> are passed to the <code>main</code> function which returns: <code>F</code> a table that contains Configi functions, <code>P</code> a table that contains the parameter-arguments, <code>R</code> a table that is used to store results</p>
 <p>Configi has support for handlers. The argument to the <code>notify_kept</code> parameter is called when a function is skipped. The argument to <code>notify</code> when the function succeeds with the prescribed operation. The argument to <code>notify_failed</code> when the operation fails.</p>
 <p>Some modules require you to micromanage operations, messages and results. Here's an equivalent of the function above:</p>
 <pre><code>function example.present (S)
   local M = { "task" }
   local G = {
-ok = "example.present: Ok",
-    skip = "example.present: Skipped",
-    fail = "example.presnet: Error"
+repaired = "example.present: Ok",
+    kept = "example.present: Skipped",
+    failed = "example.presnet: Error"
   }
   local F, P, R = main(S, M, G)
   if Func.done() then
-    F.msg(P.task, G.skip, nil)
+    F.msg(P.task, G.kept, nil)
     R.notify_kept = P.notify_kept
     return R
   end
   if F.run(Cmd.something, { action = P.task }) then
-    F.msg(P.task, G.ok, true)
+    F.msg(P.task, G.repaired, true)
     R.notify = P.notify
     R.changed = true
   else

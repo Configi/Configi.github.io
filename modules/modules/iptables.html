@@ -42,9 +42,9 @@
   <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
   <li><a href="../modules/cron.html">cron</a></li>
   <li><a href="../modules/file.html">file</a></li>
-  <li><strong>git</strong></li>
+  <li><a href="../modules/git.html">git</a></li>
   <li><a href="../modules/hostname.html">hostname</a></li>
-  <li><a href="../modules/iptables.html">iptables</a></li>
+  <li><strong>iptables</strong></li>
   <li><a href="../modules/make.html">make</a></li>
   <li><a href="../modules/openrc.html">openrc</a></li>
   <li><a href="../modules/opkg.html">opkg</a></li>
@@ -63,16 +63,20 @@
 
 <div id="content">
 
-<h1>Module <code>git</code></h1>
-<p>Ensure that a Git repository is cloned into a specified path.</p>
+<h1>Module <code>iptables</code></h1>
+<p>Add iptables rules.</p>
 <p>
 
 </p>
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> git.repo [[
-   repo &quot;https://github.com/torvalds/linux.git&quot;
-   path &quot;/home/user/work&quot;
+        <pre class="example"> iptables.append [[
+   table &quot;filter&quot;
+   chain &quot;input&quot;
+   target &quot;accept&quot;
+   source &quot;6.6.6.6&quot;
+   protocol &quot;tcp&quot;
+   options &quot;-m tcp --sport 31337 --dport 31337&quot;
  ]]</pre>
     </ul>
 
@@ -80,8 +84,12 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#pull">pull [[repository, path]]</a></td>
-	<td class="summary">Run <code>git pull</code> for a repository.</td>
+	<td class="name" nowrap><a href="#disable">disable [[S]]</a></td>
+	<td class="summary">Disable IPTables.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#default">default [[host, source, ssh]]</a></td>
+	<td class="summary">Default deny but allow incoming connections to port 22.</td>
 	</tr>
 </table>
 
@@ -93,21 +101,20 @@
 
     <dl class="function">
     <dt>
-    <a name = "pull"></a>
-    <strong>pull [[repository, path]]</strong>
+    <a name = "disable"></a>
+    <strong>disable [[S]]</strong>
     </dt>
     <dd>
-    Run <code>git pull</code> for a repository.
- This always attempts to run the command. Useful as a handler.
+    Disable IPTables.
+ Flush, zero out counters and remove user-defined chains.
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">repository</span>
-         The URL of the repository. [ALIAS: url,repo] [REQUIRED]
-        </li>
-        <li><span class="parameter">path</span>
-         absolute path where to run the pull command [REQUIRED]
+        <li><span class="parameter">S</span>
+
+
+
         </li>
     </ul>
 
@@ -118,10 +125,43 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> git.pull <span class="string">[[
-   repo "https://github.com/torvalds/linux.git"
-   path "/home/user/work"
- ]]</span></pre>
+        <pre class="example">iptables.disable<span class="string">[[]]</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "default"></a>
+    <strong>default [[host, source, ssh]]</strong>
+    </dt>
+    <dd>
+    Default deny but allow incoming connections to port 22.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">host</span>
+         IP of the local host [DEFAULT: 0.0.0.0]
+        </li>
+        <li><span class="parameter">source</span>
+         IP of host to white list [DEFAULT: 0.0.0.0]
+        </li>
+        <li><span class="parameter">ssh</span>
+         SSH port [DEFAULT: 22]
+        </li>
+    </ul>
+
+
+
+
+
+    <h3>Note:</h3>
+    <ul>
+        IPv4 only at the moment.
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">iptables.default<span class="string">[[]]</span></pre>
     </ul>
 
 </dd>

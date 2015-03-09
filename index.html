@@ -160,33 +160,30 @@
 
 <h1 id="configi">Configi</h1>
 <p>A minimalistic infrastructure automation and configuration management software. It is MIT licensed (including the core modules).</p>
-<p>Configi can manage several aspects of system configuration and maintenance. Note that this well depend on the availability of Configi modules for your requirement.</p>
+<p>Configi can manage several aspects of system configuration, security and maintenance. Note that this well depend on the availability of Configi modules for your requirement.</p>
 <p>For now Configi is Linux only. There are no plans to support Windows. *BSD support possibly in the future.</p>
 <p>See <a href="http://en.wikipedia.org/wiki/Configuration_management">Wikipedia</a> for more information on the topic of configuration management.</p>
 <hr />
 <h4 id="why">Why?</h4>
-<p>There are numerous configuration management software in existence but I find most are bloated both in resource usage and features. The others in the minimalist camp also fall short due to complicated module or extension writing. They are usually not far off from shell script wrappers.</p>
-<p>Configi was inspired by CFEngine 3, Chef and Ansible. You may see some similarities with these configuration management software in Configi. Especially CFEngine 3, where we borrowed the concepts introduced by the Promise Theory. Visit M. Burgess' <a href="http://markburgess.org/sysadmin.html">page</a> for essays, articles and papers regarding Promise Theory and system administration.</p>
-<p>In my opinion Lua is the ultimate configuration language. It's language features also lend to a concise core and module code. In the same spirit as Lua, the Configi core is very small. I guess this what happens when a system administrator discovers the elegance of Lua.</p>
+<p>There are several configuration management software in existence but I find most are bloated both in resource usage and features. The others in the minimalist camp also fall short due to complicated module or extension writing. The latter are usually not far off from shell script wrappers.</p>
+<p>Configi was inspired by CFEngine 3, Chef and Ansible. You may see some similarities with these configuration management software in Configi. Especially CFEngine 3, where we borrowed the concepts introduced by the Promise Theory and Computer Immunology.</p>
+<p>Visit M. Burgess' <a href="http://markburgess.org/sysadmin.html">page</a> for essays, articles and papers regarding Promise Theory and system administration. I do not claim full compliance to the theory so Configi should not be considered a complete replacement for CFEngine 3.</p>
+<p>In my opinion Lua is the best configuration language. It's language features also lend to a concise core and module code. In the same spirit as Lua, the Configi core is very small.</p>
 <p>Choosing the right tool is not a rational matter. If the design decisions outlined below aligns with your requirements then give Configi a try.</p>
 <hr />
 <h4 id="design-decisions">Design decisions</h4>
 <ul>
-<li><strong>Compiled-in modules</strong></li>
+<li><strong>Compiled-in modules and policy</strong></li>
 </ul>
-<p>Configi modules are compiled-in so you can choose the module apt for you policy or host. The Configi executable (cfg) with all modules (as of 0.9.0) compiled-in is less than 300KiB.</p>
+<p>Configi modules are compiled-in so you can choose the module apt for you policy or host. The Configi executable (cfg) with all modules (as of 0.9.0) compiled-in is less than 300KiB. You can also have your policy built-in during compilation of the executable.</p>
 <ul>
-<li><strong>Pull or push system</strong></li>
+<li><strong>Pull or push model</strong></li>
 </ul>
-<p>The ideal system would be a pull-based system but if needed Configi can also do push-based. In the future we may add a built-in feature that supports a pull-based system.</p>
-<ul>
-<li><strong>Do not enforce a pure declarative policy</strong></li>
-</ul>
-<p>Configi policies can be written as mixed declarative and imperative. As much as possible it is desired to write policies to be declarative but policy authors can take advantage of the imperative features of Lua.</p>
+<p>The ideal system would be a pull-based system but if needed Configi can also emulate a push-based system.</p>
 <ul>
 <li><strong>No packaging required</strong></li>
 </ul>
-<p>You can just copy the Configi (cfg) binary and a Configi policy to a host and have it configuring the host in no time.</p>
+<p>You can just copy the Configi (cfg) executable to a host and have it configuring the host in no time.</p>
 <ul>
 <li><strong>No parallel execution</strong></li>
 </ul>
@@ -196,7 +193,7 @@
 </ul>
 <p>By avoiding parallel execution and being built in Lua we are guaranteeing very little resources required.</p>
 <ul>
-<li><strong>Sequential</strong></li>
+<li><strong>Deterministic ordering</strong></li>
 </ul>
 <p>By avoiding parallel execution policies are evaluated from top to bottom.</p>
 <ul>
@@ -207,6 +204,10 @@
 <li><strong>The only reporting mechanism is through Syslog</strong></li>
 </ul>
 <p>To be light as possible, it makes sense to support the most widespread reporting facility. If you need to monitor or gather reports from all your hosts you will need to set up consolidated remote syslogging and automated reporting.</p>
+<ul>
+<li><strong>No operation should change the state of an external host</strong></li>
+</ul>
+<p>We see more and more configuration management frameworks adding features such as cloud provisioning. I believe this goes against the principles introduced by Promise Theory.</p>
 <hr />
 <h4 id="example-policy">Example policy</h4>
 <pre><code>file.directory [[
