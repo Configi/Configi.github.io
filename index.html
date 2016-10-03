@@ -183,7 +183,9 @@
         
             <li><a href="#example-policy">Example policy</a></li>
         
-            <li><a href="#policies-are-written-in-moonscript">Policies are written in Moonscript</a></li>
+            <li><a href="#policies-are-written-in-moonscript-or-lua">Policies are written in MoonScript or Lua</a></li>
+        
+            <li><a href="#faq">FAQ</a></li>
         
             <li><a href="#mailing-list">Mailing list</a></li>
         
@@ -192,25 +194,29 @@
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="configi">Configi<a class="headerlink" href="#configi" title="Permanent link"></a></h1>
+<h1 id="configi">Configi</h1>
 <p>A minimalistic infrastructure automation and configuration management software. It is MIT licensed (including the core modules).</p>
 <p>Configi can manage several aspects of system configuration, security and maintenance. Note that this will depend on the availability of Configi modules applicable for your requirement.</p>
-<p>For now Configi is Linux only. There are no plans to support Windows. *BSD support possibly in the future.</p>
+<p>Configi is Linux only at the moment but *BSD and OS X support can be added without considerable bloat.</p>
 <p>See <a href="http://en.wikipedia.org/wiki/Configuration_management">Wikipedia</a> for more information on the topic of configuration management.</p>
 <hr />
-<h4 id="why">Why?<a class="headerlink" href="#why" title="Permanent link"></a></h4>
-<p>There are several configuration management software in existence but I find most are bloated both in resource usage and features. The others in the minimalist camp also fall short due to complicated policy, module or extension writing. The latter are usually not far off from shell script wrappers.</p>
-<p>Configi was inspired by CFEngine 3, Chef and Ansible. You may see some similarities with these configuration management software in Configi. Especially CFEngine 3, where we borrowed the concepts introduced by the Promise Theory and Computer Immunology.</p>
+<h4 id="why">Why?</h4>
+<p>There are more mature configuration management software available right now but I find most are bloated both in resource usage and features. The others in the minimalist camp also fall short due to complicated policy, module or extension writing. The latter are usually not far off from shell script wrappers.</p>
+<p>Configi was inspired by CFEngine 3, Chef and Ansible. You may see some similarities with these configuration management software in Configi. Especially CFEngine 3, where we borrowed identifiers and concepts introduced by the Promise Theory and Computer Immunology.</p>
 <p>Visit M. Burgess' <a href="http://markburgess.org/sysadmin.html">page</a> for essays, articles and papers regarding Promise Theory and system administration. I do not claim full compliance to the theory so Configi should not be considered a complete replacement for CFEngine 3.</p>
-<p><a href="http://lua.org">Lua</a> is a very good programming language. Its language features lend to simple core and module code. In the same spirit as Lua, the Configi core is very small. With the help of <a href="http://moonscript.org">Moonscript</a>, Configi provides policy writers the capabilities of Lua but with additional reduced cognitive overhead.</p>
+<p><a href="http://lua.org">Lua</a> is a very good programming language. Its language features lend to simple core and module code. In the same spirit as Lua, the Configi core is very small. With the help of <a href="http://moonscript.org">MoonScript</a>, Configi provides policy writers the capabilities of Lua but with additional reduced cognitive overhead.</p>
 <p>Choosing the right tool is not a rational matter. If the design decisions outlined below aligns with your requirements then please give Configi a try.</p>
 <hr />
-<h4 id="design-decisions">Design decisions<a class="headerlink" href="#design-decisions" title="Permanent link"></a></h4>
+<h4 id="design-decisions">Design decisions</h4>
 <ul>
 <li><strong>Compiled-in modules and policy</strong></li>
 </ul>
 <p>The Configi executable (cfg) with all modules (as of 0.9.0) compiled-in is around 500KiB. In practice this should be less because Configi modules are compiled-in. You can choose the modules only applicable for your policy or host.</p>
 <p>It's also possible to have your policy built-in during compilation of the executable.</p>
+<ul>
+<li><strong>Minimal DSL for writing policies</strong></li>
+</ul>
+<p>Markup languages are getting more popular for this use case but they are more of a hindrance.  Configi has a proper programming language but minimizes the use of DSL semantics.</p>
 <ul>
 <li><strong>Pull or push model</strong></li>
 </ul>
@@ -240,7 +246,7 @@
 </ul>
 <p>To be light as possible, it makes sense to support the most widespread reporting facility. If you need to monitor or gather reports from all your hosts you will need to set up consolidated remote syslogging and automated reporting.</p>
 <hr />
-<h4 id="example-policy">Example policy<a class="headerlink" href="#example-policy" title="Permanent link"></a></h4>
+<h4 id="example-policy">Example policy</h4>
 <pre><code>file.directory"/tmp/dir"
   comment: "Create directory if running on Gentoo"
   context: fact.osfamily.gentoo
@@ -258,11 +264,21 @@ file.touch"/tmp/dir"
   handle: "touch"
 </code></pre>
 <hr />
-<h4 id="policies-are-written-in-moonscript">Policies are written in Moonscript<a class="headerlink" href="#policies-are-written-in-moonscript" title="Permanent link"></a></h4>
-<p>Moonscript is a dynamic scripting language that has a clean syntax using significant whitespace.</p>
-<p>For reference, see the Moonscript <a href="http://moonscript.org/reference/">Language Guide</a>.</p>
+<h4 id="policies-are-written-in-moonscript-or-lua">Policies are written in MoonScript or Lua</h4>
+<p>MoonScript is a dynamic scripting language that has a clean syntax using significant whitespace. The syntax of MoonScript has been heavily inspired by the syntax of CoffeeScript. MoonScript is CoffeeScript for Lua.</p>
+<p>For reference, see the MoonScript <a href="http://moonscript.org/reference/">Language Guide</a>.</p>
+<p>If you want to further trim the cfg executable, it is possible to remove MoonScript support and just use Lua policies.</p>
 <hr />
-<h4 id="mailing-list">Mailing list<a class="headerlink" href="#mailing-list" title="Permanent link"></a></h4>
+<h4 id="faq">FAQ</h4>
+<p>1) <strong>Why not LuaJIT?</strong></p>
+<p>LuaJIT and its FFI is amazing but Configi does not need the speed that it provides. Most of the execution time in Configi will be spent by exec(3).</p>
+<p>Since the Configi core is small and simple it wouldn't be too hard to port it to LuaJIT. Right now, I just value the simplicity of PUC Lua.</p>
+<p>2) <strong>Will you support my chosen Linux distro?</strong></p>
+<p>Submit a Github issue or request in the mailing list.</p>
+<p>Also check the associated Github Projects page to see if support is already planned.<br/>
+<a href="https://github.com/Configi/configi/projects">configi/projects</a></p>
+<hr />
+<h4 id="mailing-list">Mailing list</h4>
 <p>Join the mailing list if you need help or have Configi module requests. Bug reports and patches are also very much welcome.</p>
 <p>To join, send an email to configi-request@freelists.org with 'subscribe' in the Subject field OR by
 visiting the list page at <a href="http://www.freelists.org/list/configi">Freelists/Configi</a>.</p></div>
@@ -271,7 +287,7 @@ visiting the list page at <a href="http://www.freelists.org/list/configi">Freeli
         <footer class="col-md-12">
             <hr>
             
-                <center>Copyright &copy; 2016 Eduardo Tongson.</center>
+                <center>Content licensed under a CC Attribution 4.0 International License</center>
             
             <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
         </footer>

@@ -194,8 +194,8 @@
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="linux-distribution-support">Linux Distribution support<a class="headerlink" href="#linux-distribution-support" title="Permanent link"></a></h1>
-<p>Tested on Gentoo, Debian, Centos, OpenWRT and Alpine Linux.</p>
+<h1 id="linux-distribution-support">Linux Distribution support</h1>
+<p>Tested on Gentoo, Debian, Centos, LEDE/OpenWRT and Alpine Linux.</p>
 <p>Runs fine on OpenWRT mipsel and mips targets with little as 32MB RAM. Here's a memory usage snapshot of a week-old Configi process running on a Broadcom MIPS board. The policy is executed every half hour. All 0.9.0 modules compiled in.</p>
 <pre><code>VmPeak:     1356 kB
 VmSize:     1356 kB
@@ -211,23 +211,23 @@ VmPTE:        12 kB
 VmSwap:        0 kB
 </code></pre>
 <p>It should compile on any recent Linux distributions but it may lack the necessary modules to be useful. This should improve with module contributions for your distribution.</p>
-<h1 id="download">Download<a class="headerlink" href="#download" title="Permanent link"></a></h1>
-<p><a href="https://github.com/Configi/configi/releases/tag/v1.0.0">configi-1.0.0</a></p>
-<h1 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link"></a></h1>
+<h1 id="download">Download</h1>
+<p><a href="https://github.com/Configi/configi/releases/tag/configi-1.0.0">configi-1.0.0</a></p>
+<h1 id="requirements">Requirements</h1>
 <p>The build time requirements are GNUMake and a compiler-toolchain such as GCC or Clang.</p>
-<p>Runtime Dependencies will depend on the module that you want to compile in. Check the module documentation. The only runtime dependency for the <code>cfg</code> binary is a LIBC.</p>
+<p>Runtime dependencies will depend on the module that you want to compile in. As much as possible core modules do not link to shared libraries. If dynamically linked the only runtime dependency of the <code>cfg</code> executable is a libc.</p>
 <pre><code># ldd bin/cfg
     /lib/ld-musl-x86_64.so.1 (0x7f6167d50000)
     libc.musl-x86_64.so.1 =&gt; /lib/ld-musl-x86_64.so.1 (0x7f6167d50000)
 </code></pre>
-<h1 id="building">Building<a class="headerlink" href="#building" title="Permanent link"></a></h1>
-<p>The build system is from <a href="https://github.com/tongson/omnia">Omnia</a>. Underneath it's a non-recursive Makefile.</p>
+<h1 id="building">Building</h1>
+<p>The build system is from <a href="https://github.com/tongson/omnia">Omnia</a>.</p>
 <p>Unpack the archive, change to the directory then run <code>make</code>.</p>
 <pre><code># tar -xf configi-1.0.0.tar.gz
 # cd configi-1.0.0
 # make
 </code></pre>
-<h1 id="running">Running<a class="headerlink" href="#running" title="Permanent link"></a></h1>
+<h1 id="running">Running</h1>
 <pre><code># cd configi-1.0.0
 # ./cfg -f path_to_your_policy
 </code></pre></div>
@@ -236,7 +236,7 @@ VmSwap:        0 kB
         <footer class="col-md-12">
             <hr>
             
-                <center>Copyright &copy; 2016 Eduardo Tongson.</center>
+                <center>Content licensed under a CC Attribution 4.0 International License</center>
             
             <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
         </footer>
