@@ -3,8 +3,8 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <head>
-    <title>Configi Modules documentation</title>
-    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
 </head>
 <body>
 
@@ -30,15 +30,18 @@
   <li><a href="../index.html">Index</a></li>
 </ul>
 
-<h2>Contents</h2>
-<ul>
-<li><a href="#Functions">Functions</a></li>
+
+
+<h2>Functions</h2>
+<ul class="nowrap">
+    <li><a href="#clean">clean(None)</a></li>
+    <li><a href="#present">present(cleanall, config, nogpgcheck, security, bugfix, proxy, update, update_minimal)</a></li>
+    <li><a href="#absent">absent(config)</a></li>
 </ul>
-
-
 <h2>Modules</h2>
-<ul class="$(kind=='Topics' and '' or 'nowrap'">
+<ul class="nowrap">
   <li><a href="../modules/apk.html">apk</a></li>
+  <li><a href="../modules/apt.html">apt</a></li>
   <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
   <li><a href="../modules/cron.html">cron</a></li>
   <li><a href="../modules/file.html">file</a></li>
@@ -76,72 +79,64 @@
     </ul>
 
 
-<h2><a href="#Functions">Functions</a></h2>
-<table class="function_list">
-	<tr>
-	<td class="name" nowrap><a href="#clean">clean [[option]]</a></td>
-	<td class="summary">Run clean mode.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#present">present [[package, cleanall, config, nogpgcheck, security, bugfix, proxy, update, update_minimal]]</a></td>
-	<td class="summary">Install a package via the Yum package manager.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#absent">absent [[package, config]]</a></td>
-	<td class="summary">Remove a package via the Yum package manager.</td>
-	</tr>
-</table>
 
-<br/>
-<br/>
-
-
-    <h2><a name="Functions"></a>Functions</h2>
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
 
     <dl class="function">
     <dt>
     <a name = "clean"></a>
-    <strong>clean [[option]]</strong>
+    <strong>clean(None)</strong>
     </dt>
     <dd>
     Run clean mode.
  See yum(8) for possible options.
 
+    <h3>Subject:</h3>
+    <ul>
+         option to pass to <code>yum clean</code>
+    </ul>
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">option</span>
-         option to pass to <code>yum clean</code>
+        <li><span class="parameter">None</span>
+
+
+
         </li>
     </ul>
-
-
 
 
 
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> yum.clean <span class="string">[[
-   option "all"
- ]]</span></pre>
+        <pre class="example">yum.clean(<span class="string">"all"</span>)!</pre>
     </ul>
 
 </dd>
     <dt>
     <a name = "present"></a>
-    <strong>present [[package, cleanall, config, nogpgcheck, security, bugfix, proxy, update, update_minimal]]</strong>
+    <strong>present(cleanall, config, nogpgcheck, security, bugfix, proxy, update, update_minimal)</strong>
     </dt>
     <dd>
     Install a package via the Yum package manager.
  See yum(8) for full description of options and parameters
 
+    <h3>Subject:</h3>
+    <ul>
+         package
+    </ul>
+    </ul>
+    <h3>Aliases:</h3>
+    <ul>
+         <li>installed</li>
+         <li>install</li>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">package</span>
-         name of the package to install [REQUIRED]
-        </li>
         <li><span class="parameter">cleanall</span>
          run <code>yum clean all</code> before proceeding [CHOICES: "yes", "no"]
         </li>
@@ -171,35 +166,33 @@
 
 
 
-    <h3>Aliases:</h3>
-    <ul>
-        <li>installed</li>
-        <li>install</li>
-    </ul>
-
-
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> yum.present <span class="string">[[
-   package "strace"
-   update "yes"
- ]]</span></pre>
+        <pre class="example">yum.present(<span class="string">"strace"</span>)
+     update: <span class="string">"yes"</span></pre>
     </ul>
 
 </dd>
     <dt>
     <a name = "absent"></a>
-    <strong>absent [[package, config]]</strong>
+    <strong>absent(config)</strong>
     </dt>
     <dd>
     Remove a package via the Yum package manager.
 
+    <h3>Subject:</h3>
+    <ul>
+         package
+    </ul>
+    </ul>
+    <h3>Aliases:</h3>
+    <ul>
+         <li>removed</li>
+         <li>remove</li>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">package</span>
-         name of the package to remove [REQUIRED]
-        </li>
         <li><span class="parameter">config</span>
          yum config file location
         </li>
@@ -208,13 +201,11 @@
 
 
 
-    <h3>Aliases:</h3>
+    <h3>Usage:</h3>
     <ul>
-        <li>removed</li>
-        <li>remove</li>
+        <pre class="example">yum.absent(<span class="string">"strace"</span>)
+     config: <span class="string">"/etc/yum.conf"</span></pre>
     </ul>
-
-
 
 </dd>
 </dl>
@@ -223,8 +214,8 @@
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
-<i style="float:right;">Last updated 2015-03-14 10:22:43 </i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.5</a></i>
+<i style="float:right;">Last updated 2016-10-03 16:36:00 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

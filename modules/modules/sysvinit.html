@@ -3,8 +3,8 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <head>
-    <title>Configi Modules documentation</title>
-    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
 </head>
 <body>
 
@@ -30,15 +30,21 @@
   <li><a href="../index.html">Index</a></li>
 </ul>
 
-<h2>Contents</h2>
-<ul>
-<li><a href="#Functions">Functions</a></li>
+
+
+<h2>Functions</h2>
+<ul class="nowrap">
+    <li><a href="#started">started(None)</a></li>
+    <li><a href="#stopped">stopped(None)</a></li>
+    <li><a href="#restart">restart(None)</a></li>
+    <li><a href="#reload">reload(None)</a></li>
+    <li><a href="#enabled">enabled(None)</a></li>
+    <li><a href="#disabled">disabled(None)</a></li>
 </ul>
-
-
 <h2>Modules</h2>
-<ul class="$(kind=='Topics' and '' or 'nowrap'">
+<ul class="nowrap">
   <li><a href="../modules/apk.html">apk</a></li>
+  <li><a href="../modules/apt.html">apt</a></li>
   <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
   <li><a href="../modules/cron.html">cron</a></li>
   <li><a href="../modules/file.html">file</a></li>
@@ -74,218 +80,208 @@
     </ul>
 
 
-<h2><a href="#Functions">Functions</a></h2>
-<table class="function_list">
-	<tr>
-	<td class="name" nowrap><a href="#started">started [[service]]</a></td>
-	<td class="summary">Start a service.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#stopped">stopped [[service]]</a></td>
-	<td class="summary">Stop a service.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#restart">restart [[service]]</a></td>
-	<td class="summary">Restart a service.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#reload">reload [[service]]</a></td>
-	<td class="summary">Reload a service.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#enabled">enabled [[service]]</a></td>
-	<td class="summary">Enable a service</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#disabled">disabled [[service]]</a></td>
-	<td class="summary">Disable a service.</td>
-	</tr>
-</table>
 
-<br/>
-<br/>
-
-
-    <h2><a name="Functions"></a>Functions</h2>
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
 
     <dl class="function">
     <dt>
     <a name = "started"></a>
-    <strong>started [[service]]</strong>
+    <strong>started(None)</strong>
     </dt>
     <dd>
     Start a service.
 
+    <h3>Subject:</h3>
+    <ul>
+         service
+    </ul>
+    </ul>
+    <h3>Aliases:</h3>
+    <ul>
+         present
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">service</span>
-         service to start [REQUIRED]
+        <li><span class="parameter">None</span>
+
+
+
         </li>
     </ul>
 
 
 
 
-    <h3>Aliases:</h3>
-    <ul>
-        present
-    </ul>
-
-
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> sysvinit.started <span class="string">[[
-   service "ntpd"
- ]]</span></pre>
+        <pre class="example">sysvinit.started(<span class="string">"ntpd"</span>)!</pre>
     </ul>
 
 </dd>
     <dt>
     <a name = "stopped"></a>
-    <strong>stopped [[service]]</strong>
+    <strong>stopped(None)</strong>
     </dt>
     <dd>
     Stop a service.
 
+    <h3>Subject:</h3>
+    <ul>
+         service
+    </ul>
+    </ul>
+    <h3>Aliases:</h3>
+    <ul>
+         absent
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">service</span>
-         service to stop [REQUIRED]
+        <li><span class="parameter">None</span>
+
+
+
         </li>
     </ul>
 
 
 
 
-    <h3>Aliases:</h3>
-    <ul>
-        absent
-    </ul>
-
-
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> sysvinit.stopped <span class="string">[[
-   service "telnetd"
- ]]</span></pre>
+        <pre class="example">sysvinit.stopped(<span class="string">"telnetd"</span>)!</pre>
     </ul>
 
 </dd>
     <dt>
     <a name = "restart"></a>
-    <strong>restart [[service]]</strong>
+    <strong>restart(None)</strong>
     </dt>
     <dd>
     Restart a service.
 
+    <h3>Subject:</h3>
+    <ul>
+         service
+    </ul>
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">service</span>
-         service to restart [REQUIRED]
+        <li><span class="parameter">None</span>
+
+
+
         </li>
     </ul>
 
 
 
 
-
-
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> sysvinit.restart <span class="string">[[
-   service "ntpd"
- ]]</span></pre>
+        <pre class="example">sysvinit.restart(<span class="string">"ntpd"</span>)!</pre>
     </ul>
 
 </dd>
     <dt>
     <a name = "reload"></a>
-    <strong>reload [[service]]</strong>
+    <strong>reload(None)</strong>
     </dt>
     <dd>
     Reload a service.
 
+    <h3>Subject:</h3>
+    <ul>
+         service
+    </ul>
+    <h3>Note:</h3>
+    <ul>
+         OpenWRT sysvinit can not detect reload failures
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">service</span>
-         service to reload [REQUIRED]
+        <li><span class="parameter">None</span>
+
+
+
         </li>
     </ul>
 
 
 
 
-
-    <h3>Note:</h3>
-    <ul>
-        OpenWRT sysvinit can <span class="keyword">not</span> detect reload failures
-    </ul>
-
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> sysvinit.reload <span class="string">[[
-   service "ntpd"
- ]]</span></pre>
+        <pre class="example">sysvinit.reload(<span class="string">"ntpd"</span>)!</pre>
     </ul>
 
 </dd>
     <dt>
     <a name = "enabled"></a>
-    <strong>enabled [[service]]</strong>
+    <strong>enabled(None)</strong>
     </dt>
     <dd>
     Enable a service
 
+    <h3>Subject:</h3>
+    <ul>
+         service
+    </ul>
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">service</span>
-         service to enable [REQUIRED]
+        <li><span class="parameter">None</span>
+
+
+
         </li>
     </ul>
 
 
 
 
-
-
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> sysvinit.enabled <span class="string">[[
-   service "ntpd"
- ]]</span></pre>
+        <pre class="example">sysvinit.enabled(<span class="string">"ntpd"</span>)!</pre>
     </ul>
 
 </dd>
     <dt>
     <a name = "disabled"></a>
-    <strong>disabled [[service]]</strong>
+    <strong>disabled(None)</strong>
     </dt>
     <dd>
     Disable a service.
 
+    <h3>Subject:</h3>
+    <ul>
+         service
+    </ul>
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">service</span>
-         service to disable [REQUIRED]
+        <li><span class="parameter">None</span>
+
+
+
         </li>
     </ul>
 
 
 
 
-
-
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> sysvinit.disabled <span class="string">[[
-   service "ntpd"
- ]]</span></pre>
+        <pre class="example">sysvinit.disabled(<span class="string">"ntpd"</span>)!</pre>
     </ul>
 
 </dd>
@@ -295,8 +291,8 @@
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
-<i style="float:right;">Last updated 2015-03-14 10:22:43 </i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.5</a></i>
+<i style="float:right;">Last updated 2016-10-03 16:36:00 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

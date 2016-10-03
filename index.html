@@ -4,17 +4,18 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Configi homepage">
+        <meta name="description" content="Bloat-free configuration management">
+        <meta name="author" content="Eduardo Tongson">
+        <link rel="canonical" href="http://www.configi.org/">
+        <link rel="shortcut icon" href="favicon.ico">
         
-        <link rel="canonical" href="http://configi.org/">
-        <link rel="shortcut icon" href="./img/favicon.ico">
 
-        <title>Configi</title>
+	<title>Configi</title>
 
         <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link href="./css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/highlight.css">
+        <link href="./css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -25,14 +26,13 @@
         
     </head>
 
-    <body class="homepage">
+    <body>
 
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
 
         <!-- Collapsed navigation -->
         <div class="navbar-header">
-            
             <!-- Expander button -->
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -40,7 +40,6 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            
 
             <!-- Main title -->
             <a class="navbar-brand" href=".">Configi</a>
@@ -48,80 +47,115 @@
 
         <!-- Expanded navigation -->
         <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
             
-                <!-- Main navigation -->
-                <ul class="nav navbar-nav">
-                
-                
-                    <li >
-                        <a href="license/">License</a>
-                    </li>
-                
-                
-                
-                    <li >
-                        <a href="download/">Download</a>
-                    </li>
-                
-                
-                
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        
-                            <li >
-                                <a href="reference/about_modules/">About Modules</a>
-                            </li>
-                        
-                            <li >
-                                <a href="reference/policy_functions/">Policy Functions</a>
-                            </li>
-                        
-                            <li >
-                                <a href="reference/module_functions/">Module Functions</a>
-                            </li>
-                        
-                            <li >
-                                <a href="reference/cli/">CLI</a>
-                            </li>
-                        
-                            <li >
-                                <a href="reference/glossary/">Glossary</a>
-                            </li>
-                        
-                            <li >
-                                <a href="reference/gotchas/">Gotchas</a>
-                            </li>
-                        
-                        </ul>
-                    </li>
-                
-                
-                
-                    <li >
-                        <a href="modules/">Module Documentation</a>
-                    </li>
-                
-                
-                </ul>
             
+                <li class="active">
+                    <a href=".">Home</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="download/">Download</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="license/">License</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="modules/">Modules</a>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+<li >
+    <a href="reference/about_modules/">About modules</a>
+</li>
 
+                    
+                        
+<li >
+    <a href="reference/stdlib/">Standard library</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="reference/modules/">Available Lua modules</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="reference/cli/">Cli</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="reference/factid/">Factid</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="reference/glossary/">Glossary</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="reference/gotchas/">Gotchas</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="reference/module_functions/">Module functions</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="reference/policy_functions/">Policy functions</a>
+</li>
+
+                    
+                    </ul>
+                </li>
             
+            
+            </ul>
+
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
-                
-                
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
                 <li class="disabled">
                     <a rel="next" >
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="license/">
+                    <a rel="prev" href="download/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
-                
                 
                 <li>
                     <a href="https://github.com/Configi/configi">
@@ -133,14 +167,12 @@
                 </li>
                 
             </ul>
-            
         </div>
     </div>
 </div>
 
         <div class="container">
-            
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
         <li class="main active"><a href="#configi">Configi</a></li>
@@ -151,31 +183,34 @@
         
             <li><a href="#example-policy">Example policy</a></li>
         
+            <li><a href="#policies-are-written-in-moonscript">Policies are written in Moonscript</a></li>
+        
             <li><a href="#mailing-list">Mailing list</a></li>
         
     
     </ul>
 </div></div>
-                <div class="col-md-9" role="main">
+            <div class="col-md-9" role="main">
 
-<h1 id="configi">Configi</h1>
+<h1 id="configi">Configi<a class="headerlink" href="#configi" title="Permanent link"></a></h1>
 <p>A minimalistic infrastructure automation and configuration management software. It is MIT licensed (including the core modules).</p>
-<p>Configi can manage several aspects of system configuration, security and maintenance. Note that this well depend on the availability of Configi modules for your requirement.</p>
+<p>Configi can manage several aspects of system configuration, security and maintenance. Note that this will depend on the availability of Configi modules applicable for your requirement.</p>
 <p>For now Configi is Linux only. There are no plans to support Windows. *BSD support possibly in the future.</p>
 <p>See <a href="http://en.wikipedia.org/wiki/Configuration_management">Wikipedia</a> for more information on the topic of configuration management.</p>
 <hr />
-<h4 id="why">Why?</h4>
-<p>There are several configuration management software in existence but I find most are bloated both in resource usage and features. The others in the minimalist camp also fall short due to complicated module or extension writing. The latter are usually not far off from shell script wrappers.</p>
+<h4 id="why">Why?<a class="headerlink" href="#why" title="Permanent link"></a></h4>
+<p>There are several configuration management software in existence but I find most are bloated both in resource usage and features. The others in the minimalist camp also fall short due to complicated policy, module or extension writing. The latter are usually not far off from shell script wrappers.</p>
 <p>Configi was inspired by CFEngine 3, Chef and Ansible. You may see some similarities with these configuration management software in Configi. Especially CFEngine 3, where we borrowed the concepts introduced by the Promise Theory and Computer Immunology.</p>
 <p>Visit M. Burgess' <a href="http://markburgess.org/sysadmin.html">page</a> for essays, articles and papers regarding Promise Theory and system administration. I do not claim full compliance to the theory so Configi should not be considered a complete replacement for CFEngine 3.</p>
-<p>In my opinion Lua is the best configuration language. It's language features also lend to a concise core and module code. In the same spirit as Lua, the Configi core is very small.</p>
-<p>Choosing the right tool is not a rational matter. If the design decisions outlined below aligns with your requirements then give Configi a try.</p>
+<p><a href="http://lua.org">Lua</a> is a very good programming language. Its language features lend to simple core and module code. In the same spirit as Lua, the Configi core is very small. With the help of <a href="http://moonscript.org">Moonscript</a>, Configi provides policy writers the capabilities of Lua but with additional reduced cognitive overhead.</p>
+<p>Choosing the right tool is not a rational matter. If the design decisions outlined below aligns with your requirements then please give Configi a try.</p>
 <hr />
-<h4 id="design-decisions">Design decisions</h4>
+<h4 id="design-decisions">Design decisions<a class="headerlink" href="#design-decisions" title="Permanent link"></a></h4>
 <ul>
 <li><strong>Compiled-in modules and policy</strong></li>
 </ul>
-<p>Configi modules are compiled-in so you can choose the module apt for you policy or host. The Configi executable (cfg) with all modules (as of 0.9.0) compiled-in is less than 300KiB. You can also have your policy built-in during compilation of the executable.</p>
+<p>The Configi executable (cfg) with all modules (as of 0.9.0) compiled-in is around 500KiB. In practice this should be less because Configi modules are compiled-in. You can choose the modules only applicable for your policy or host.</p>
+<p>It's also possible to have your policy built-in during compilation of the executable.</p>
 <ul>
 <li><strong>Pull or push model</strong></li>
 </ul>
@@ -187,7 +222,7 @@
 <ul>
 <li><strong>No parallel execution</strong></li>
 </ul>
-<p>This requires adding features that complicates and bloats the runtime.</p>
+<p>Parallel execution requires adding features that complicates and bloats the runtime.</p>
 <ul>
 <li><strong>Minimal resource usage</strong></li>
 </ul>
@@ -204,59 +239,73 @@
 <li><strong>The only reporting mechanism is through Syslog</strong></li>
 </ul>
 <p>To be light as possible, it makes sense to support the most widespread reporting facility. If you need to monitor or gather reports from all your hosts you will need to set up consolidated remote syslogging and automated reporting.</p>
-<ul>
-<li><strong>No operation should change the state of an external host</strong></li>
-</ul>
-<p>We see more and more configuration management frameworks adding features such as cloud provisioning. I believe this goes against the principles introduced by Promise Theory.</p>
 <hr />
-<h4 id="example-policy">Example policy</h4>
-<pre><code>file.directory [[
-  comment "Create directory if running on Gentoo"
-  context "fact.osfamily.gentoo"
-  path "/tmp/dir"
-  mode "0700"
-  notify "touch"
-]]
+<h4 id="example-policy">Example policy<a class="headerlink" href="#example-policy" title="Permanent link"></a></h4>
+<pre><code>file.directory"/tmp/dir"
+  comment: "Create directory if running on Gentoo"
+  context: fact.osfamily.gentoo
+  mode: "0700"
+  notify: "touch"
 
-yum.present [[
-  context "fact.osfamily.centos"
-  package "mtr"
-]]
+yum.present"mtr"
+  context: fact.osfamily.centos
 
-file.absent [[
-  path "/tmp/dir"
-  notify "touch"
-]]
+file.absent"/tmp/dir"
+  notify: "touch"
 
-file.touch [[
-  comment "Handle 'touch' notifications. This is only executed once."
-  handle "touch"
-  path "/tmp/dir"
-]]
+file.touch"/tmp/dir"
+  comment: "Handle 'touch' notifications. This is only executed once."
+  handle: "touch"
 </code></pre>
 <hr />
-<h4 id="mailing-list">Mailing list</h4>
+<h4 id="policies-are-written-in-moonscript">Policies are written in Moonscript<a class="headerlink" href="#policies-are-written-in-moonscript" title="Permanent link"></a></h4>
+<p>Moonscript is a dynamic scripting language that has a clean syntax using significant whitespace.</p>
+<p>For reference, see the Moonscript <a href="http://moonscript.org/reference/">Language Guide</a>.</p>
+<hr />
+<h4 id="mailing-list">Mailing list<a class="headerlink" href="#mailing-list" title="Permanent link"></a></h4>
 <p>Join the mailing list if you need help or have Configi module requests. Bug reports and patches are also very much welcome.</p>
 <p>To join, send an email to configi-request@freelists.org with 'subscribe' in the Subject field OR by
-visiting the list page at <a href="http://www.freelists.org/list/configi">Freelists/Configi</a>.</p>
-</div>
-            
+visiting the list page at <a href="http://www.freelists.org/list/configi">Freelists/Configi</a>.</p></div>
         </div>
 
         <footer class="col-md-12">
             <hr>
             
-            <p>Copyright &copy; 2015, <a href="https://github.com/tongson">Eduardo Tongson</a>.</p>
+                <center>Copyright &copy; 2016 Eduardo Tongson.</center>
             
-            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
         </footer>
 
-        
-
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="./js/jquery-1.10.2.min.js"></script>
         <script src="./js/bootstrap-3.0.3.min.js"></script>
-        <script src="./js/prettify-1.0.min.js"></script>
         <script src="./js/highlight.pack.js"></script>
+        <script>var base_url = '.';</script>
+        <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
         <script src="./js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

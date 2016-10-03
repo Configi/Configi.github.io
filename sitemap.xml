@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>http://www.configi.org/</loc>
+     <lastmod>2016-10-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://www.configi.org/download/</loc>
+     <lastmod>2016-10-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://www.configi.org/license/</loc>
+     <lastmod>2016-10-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>http://www.configi.org/modules/</loc>
+     <lastmod>2016-10-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc>http://www.configi.org/reference/about_modules/</loc>
+     <lastmod>2016-10-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.configi.org/reference/stdlib/</loc>
+     <lastmod>2016-10-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.configi.org/reference/modules/</loc>
+     <lastmod>2016-10-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.configi.org/reference/cli/</loc>
+     <lastmod>2016-10-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.configi.org/reference/factid/</loc>
+     <lastmod>2016-10-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.configi.org/reference/glossary/</loc>
+     <lastmod>2016-10-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.configi.org/reference/gotchas/</loc>
+     <lastmod>2016-10-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.configi.org/reference/module_functions/</loc>
+     <lastmod>2016-10-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.configi.org/reference/policy_functions/</loc>
+     <lastmod>2016-10-01</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+</urlset>

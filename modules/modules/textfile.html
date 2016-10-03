@@ -3,8 +3,8 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <head>
-    <title>Configi Modules documentation</title>
-    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
 </head>
 <body>
 
@@ -30,15 +30,18 @@
   <li><a href="../index.html">Index</a></li>
 </ul>
 
-<h2>Contents</h2>
-<ul>
-<li><a href="#Functions">Functions</a></li>
+
+
+<h2>Functions</h2>
+<ul class="nowrap">
+    <li><a href="#render">render(src, table, lua, mode, diff)</a></li>
+    <li><a href="#insert_line">insert_line(line, inserts, pattern, plain, before, after)</a></li>
+    <li><a href="#remove_line">remove_line(pattern, plain)</a></li>
 </ul>
-
-
 <h2>Modules</h2>
-<ul class="$(kind=='Topics' and '' or 'nowrap'">
+<ul class="nowrap">
   <li><a href="../modules/apk.html">apk</a></li>
+  <li><a href="../modules/apt.html">apt</a></li>
   <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
   <li><a href="../modules/cron.html">cron</a></li>
   <li><a href="../modules/file.html">file</a></li>
@@ -68,49 +71,82 @@
 <p>
 
 </p>
-    <h3>Usage:</h3>
+    <h3>Info:</h3>
     <ul>
-        <pre class="example"> textfile.render [[
-   template &quot;/etc/something/config.template&quot;
-   dest &quot;/etc/something/config&quot;
-   view &quot;view_model&quot;
-   data &quot;/etc/something/config.lua&quot;
- ]]</pre>
+        <li><strong>License</strong>: MIT <a href="http://opensource.org/licenses/MIT">http://opensource.org/licenses/MIT</a></li>
+        <li><strong>Author</strong>: Eduardo Tongson <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;p&#114;&#x6f;&#112;&#x6f;&#108;&#x69;&#99;&#x65;&#64;&#x67;m&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x70;&#114;&#x6f;&#112;&#x6f;&#108;&#x69;c&#101;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;c&#111;&#x6d;</a></li>
+        <li><strong>Added</strong>: 0.9.0</li>
     </ul>
 
 
-<h2><a href="#Functions">Functions</a></h2>
-<table class="function_list">
-	<tr>
-	<td class="name" nowrap><a href="#insert_line">insert_line [[path, line, inserts, pattern, plain, before, after]]</a></td>
-	<td class="summary">Insert lines into an existing file.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#remove_line">remove_line [[path, pattern, plain]]</a></td>
-	<td class="summary">Remove lines from an existing file.</td>
-	</tr>
-</table>
 
-<br/>
-<br/>
-
-
-    <h2><a name="Functions"></a>Functions</h2>
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
 
     <dl class="function">
     <dt>
+    <a name = "render"></a>
+    <strong>render(src, table, lua, mode, diff)</strong>
+    </dt>
+    <dd>
+    Render a textfile.
+
+    <h3>Subject:</h3>
+    <ul>
+         output file
+    </ul>
+    <h3>Note:</h3>
+    <ul>
+         Requires the diffutils package for the diff parameter to work
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">src</span>
+         source template [REQUIRED] [ALIAS: template]
+        </li>
+        <li><span class="parameter">table</span>
+         [REQUIRED] [ALIAS: view]
+        </li>
+        <li><span class="parameter">lua</span>
+         [ALIAS: data]
+        </li>
+        <li><span class="parameter">mode</span>
+         mode bits for output file [DEFAULT: "0600"]
+        </li>
+        <li><span class="parameter">diff</span>
+         show diff [CHOICES: "yes","no"]
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">textfile.render(<span class="string">"/etc/something/config"</span>)
+    template: <span class="string">"/etc/something/config.template"</span>
+    view: <span class="string">"view_model"</span>
+    data: <span class="string">"/etc/something/config.lua"</span></pre>
+    </ul>
+
+</dd>
+    <dt>
     <a name = "insert_line"></a>
-    <strong>insert_line [[path, line, inserts, pattern, plain, before, after]]</strong>
+    <strong>insert_line(line, inserts, pattern, plain, before, after)</strong>
     </dt>
     <dd>
     Insert lines into an existing file.
 
+    <h3>Subject:</h3>
+    <ul>
+         path of text file to modify
+    </ul>
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">path</span>
-         path of textfile to modify [REQUIRED] [ALIAS: dest,file,textfile]
-        </li>
         <li><span class="parameter">line</span>
          text to insert [REQUIRED] [ALIAS: text]
         </li>
@@ -134,33 +170,32 @@
 
 
 
-
-
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> textfile.insert_line <span class="string">[[
-   path "/etc/sysctl.conf"
-   pattern "# http://cr.yp.to/syncookies.html"
-   text "net.ipv4.tcp_syncookies = 1"
-   after "true"
-   plain "true"
- ]]</span></pre>
+        <pre class="example">textfile.insert_line(<span class="string">"/etc/sysctl.conf"</span>)
+    pattern: <span class="string">"# http://cr.yp.to/syncookies.html"</span>
+    text: <span class="string">"net.ipv4.tcp_syncookies = 1"</span>
+    after: <span class="string">"true"</span>
+    plain: <span class="string">"true"</span></pre>
     </ul>
 
 </dd>
     <dt>
     <a name = "remove_line"></a>
-    <strong>remove_line [[path, pattern, plain]]</strong>
+    <strong>remove_line(pattern, plain)</strong>
     </dt>
     <dd>
     Remove lines from an existing file.
 
+    <h3>Subject:</h3>
+    <ul>
+         path of text file to modify
+    </ul>
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">path</span>
-         path of textfile to modify [REQUIRED] [ALIAS: dest,file,textfile]
-        </li>
         <li><span class="parameter">pattern</span>
          text pattern to remove [REQUIRED] [ALIAS: match]
         </li>
@@ -172,15 +207,11 @@
 
 
 
-
-
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> textfile.remove_line <span class="string">[[
-   path "/etc/sysctl.conf"
-   match "net.ipv4.ip_forward = 1"
-   plain "true"
- ]]</span></pre>
+        <pre class="example">textfile.remove_line(<span class="string">"/etc/sysctl.conf"</span>)
+    match: <span class="string">"net.ipv4.ip_forward = 1"</span>
+    plain: <span class="string">"true"</span></pre>
     </ul>
 
 </dd>
@@ -190,8 +221,8 @@
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
-<i style="float:right;">Last updated 2015-03-14 10:22:43 </i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.5</a></i>
+<i style="float:right;">Last updated 2016-10-03 16:36:00 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

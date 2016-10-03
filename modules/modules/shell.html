@@ -3,8 +3,8 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <head>
-    <title>Configi Modules documentation</title>
-    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
 </head>
 <body>
 
@@ -30,15 +30,19 @@
   <li><a href="../index.html">Index</a></li>
 </ul>
 
-<h2>Contents</h2>
-<ul>
-<li><a href="#Functions">Functions</a></li>
+
+
+<h2>Functions</h2>
+<ul class="nowrap">
+    <li><a href="#command">command(cwd, env, creates, removes)</a></li>
+    <li><a href="#system">system(creates, removes)</a></li>
+    <li><a href="#popen">popen(cwd, creates, removes, expects)</a></li>
+    <li><a href="#popen3">popen3(cwd, env, creates, removes, stdin, stdout, stderr, error)</a></li>
 </ul>
-
-
 <h2>Modules</h2>
-<ul class="$(kind=='Topics' and '' or 'nowrap'">
+<ul class="nowrap">
   <li><a href="../modules/apk.html">apk</a></li>
+  <li><a href="../modules/apt.html">apt</a></li>
   <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
   <li><a href="../modules/cron.html">cron</a></li>
   <li><a href="../modules/file.html">file</a></li>
@@ -76,52 +80,26 @@
     </ul>
 
 
-<h2><a href="#Functions">Functions</a></h2>
-<table class="function_list">
-	<tr>
-	<td class="name" nowrap><a href="#command">command [[string, cwd, env, creates, removes]]</a></td>
-	<td class="summary">Run a command via execve(3).</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#system">system [[string, creates, removes]]</a></td>
-	<td class="summary">Run a script or command via os.execute.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#popen">popen [[string, cwd, creates, removes, expects]]</a></td>
-	<td class="summary">Run a command via io.popen.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#popen3">popen3 [[string, cwd, env, creates, removes, stdin, stdout, stderr, error]]</a></td>
-	<td class="summary">Run a command via Px.exec which can expect strings from STDIN, STDOUT or STDERR</td>
-	</tr>
-</table>
 
-<br/>
-<br/>
-
-
-    <h2><a name="Functions"></a>Functions</h2>
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
 
     <dl class="function">
     <dt>
     <a name = "command"></a>
-    <strong>command [[string, cwd, env, creates, removes]]</strong>
+    <strong>command(cwd, env, creates, removes)</strong>
     </dt>
     <dd>
     Run a command via execve(3).
- shell.command [[
-   cwd "/tmp"
-   env "test=this whatever=youwant"
-   command "touch test"
-   creates "test"
- ]]
 
+    <h3>Subject:</h3>
+    <ul>
+         command to execute
+    </ul>
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">string</span>
-         command to execute [REQUIRED] [ALIAS: command]
-        </li>
         <li><span class="parameter">cwd</span>
          current working directory
         </li>
@@ -139,25 +117,36 @@
 
 
 
-
-
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">shell.command(<span class="string">"touch test"</span>)
+    cwd: <span class="string">"/tmp"</span>
+    env: <span class="string">"test=this whatever=youwant"</span>
+    creates: <span class="string">"test"</span></pre>
+    </ul>
 
 </dd>
     <dt>
     <a name = "system"></a>
-    <strong>system [[string, creates, removes]]</strong>
+    <strong>system(creates, removes)</strong>
     </dt>
     <dd>
     Run a script or command via os.execute.
  <br />
  STDIN and STDERR are closed and STDOUT is piped to /dev/null
 
+    <h3>Subject:</h3>
+    <ul>
+         script or command to execute
+    </ul>
+    </ul>
+    <h3>Aliases:</h3>
+    <ul>
+         script
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">string</span>
-         script or command to execute [REQUIRED] [ALIAS: script,command]
-        </li>
         <li><span class="parameter">creates</span>
          a filename, if found will not run the script
         </li>
@@ -169,33 +158,28 @@
 
 
 
-    <h3>Aliases:</h3>
-    <ul>
-        script
-    </ul>
-
-
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> shell.system <span class="string">[[
-   script "/root/test.sh"
- ]]</span></pre>
+        <pre class="example">shell.system(<span class="string">"/root/test.sh"</span>)!</pre>
     </ul>
 
 </dd>
     <dt>
     <a name = "popen"></a>
-    <strong>popen [[string, cwd, creates, removes, expects]]</strong>
+    <strong>popen(cwd, creates, removes, expects)</strong>
     </dt>
     <dd>
     Run a command via io.popen.
 
+    <h3>Subject:</h3>
+    <ul>
+         command to execute
+    </ul>
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">string</span>
-         command to execute [REQUIRED] [ALIAS: command]
-        </li>
         <li><span class="parameter">cwd</span>
          current working directory
         </li>
@@ -213,31 +197,30 @@
 
 
 
-
-
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> shell.popen <span class="string">[[
-   cwd "/tmp"
-   command "ls -la"
-   expects ".X11-unix"
- ]]</span></pre>
+        <pre class="example">shell.popen(<span class="string">"ls -la"</span>)
+    cwd: <span class="string">"/tmp"</span>
+    expects: <span class="string">".X11-unix"</span></pre>
     </ul>
 
 </dd>
     <dt>
     <a name = "popen3"></a>
-    <strong>popen3 [[string, cwd, env, creates, removes, stdin, stdout, stderr, error]]</strong>
+    <strong>popen3(cwd, env, creates, removes, stdin, stdout, stderr, error)</strong>
     </dt>
     <dd>
-    Run a command via Px.exec which can expect strings from STDIN, STDOUT or STDERR
+    Run a command via lib.exec which can expect strings from STDIN, STDOUT or STDERR
 
+    <h3>Subject:</h3>
+    <ul>
+         command to execute
+    </ul>
+    </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">string</span>
-         command to execute [REQUIRED] [ALIAS: command]
-        </li>
         <li><span class="parameter">cwd</span>
          current working directory
         </li>
@@ -267,15 +250,11 @@
 
 
 
-
-
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"> shell.popen3 <span class="string">[[
-   cwd "/tmp"
-   command "ls"
-   stdout ".X11-unix"
- ]]</span></pre>
+        <pre class="example">shell.popen3(<span class="string">"ls"</span>)
+    cwd: <span class="string">"/tmp"</span>
+    stdout: <span class="string">".X11-unix"</span></pre>
     </ul>
 
 </dd>
@@ -285,8 +264,8 @@
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
-<i style="float:right;">Last updated 2015-03-14 10:22:43 </i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.5</a></i>
+<i style="float:right;">Last updated 2016-10-03 16:36:00 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
