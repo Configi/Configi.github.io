@@ -44,58 +44,13 @@
     <li><a href="#is_link">is_link(path)</a></li>
     <li><a href="#log">log(file, ident, msg, option, facility, level)</a></li>
     <li><a href="#diff_time">diff_time(finish, start)</a></li>
-    <li><a href="#ename">ename()</a></li>
-    <li><a href="#rname">rname()</a></li>
+    <li><a href="#effective_username">effective_username()</a></li>
+    <li><a href="#real_username">real_username()</a></li>
     <li><a href="#cmd">cmd()</a></li>
     <li><a href="#basename">basename(file)</a></li>
     <li><a href="#dirname">dirname(file)</a></li>
     <li><a href="#decomp_path">decomp_path(str)</a></li>
-    <li><a href="#printf">printf(str, ...)</a></li>
-    <li><a href="#fprintf">fprintf(fd, str, ...)</a></li>
-    <li><a href="#warn">warn(str, ...)</a></li>
-    <li><a href="#errorf">errorf(str, ...)</a></li>
-    <li><a href="#assertf">assertf(v, str, ...)</a></li>
-    <li><a href="#append">append(str, a)</a></li>
-    <li><a href="#time_hm">time_hm()</a></li>
-    <li><a href="#date_ymd">date_ymd()</a></li>
-    <li><a href="#timestamp">timestamp()</a></li>
-    <li><a href="#find_string">find_string(tbl, str, plain)</a></li>
-    <li><a href="#arr_to_rec">arr_to_rec(tbl, def)</a></li>
-    <li><a href="#ln_to_tbl">ln_to_tbl(str)</a></li>
-    <li><a href="#word_to_tbl">word_to_tbl(str)</a></li>
-    <li><a href="#str_to_tbl">str_to_tbl(str)</a></li>
-    <li><a href="#escape_pattern">escape_pattern(str)</a></li>
-    <li><a href="#filter_tbl_value">filter_tbl_value(tbl, patt, plain)</a></li>
-    <li><a href="#file_to_tbl">file_to_tbl(file)</a></li>
-    <li><a href="#find_in_tbl">find_in_tbl(tbl, str, plain)</a></li>
-    <li><a href="#shallow_cp">shallow_cp(tbl)</a></li>
-    <li><a href="#split_path">split_path(path)</a></li>
-    <li><a href="#test_open">test_open(file)</a></li>
-    <li><a href="#fopen">fopen(file)</a></li>
-    <li><a href="#fwrite">fwrite(path, str, mode)</a></li>
-    <li><a href="#get_ln">get_ln(ln, file)</a></li>
-    <li><a href="#sub">sub(str, tbl)</a></li>
-    <li><a href="#exit_string">exit_string(proc, status, code)</a></li>
-    <li><a href="#truthy">truthy(s)</a></li>
-    <li><a href="#falsy">falsy(s)</a></li>
-    <li><a href="#popen">popen(str, cwd, _ignore_error, _return_code)</a></li>
-    <li><a href="#pwrite">pwrite(str, data)</a></li>
-    <li><a href="#system">system(str)</a></li>
-    <li><a href="#execute">execute(str)</a></li>
-    <li><a href="#pipeline">pipeline(...)</a></li>
-    <li><a href="#time">time(f, ...)</a></li>
-    <li><a href="#escape_quotes">escape_quotes(str)</a></li>
-    <li><a href="#flog">flog(file, ident, msg)</a></li>
-    <li><a href="#insert_if">insert_if(bool, list, pos, value)</a></li>
-    <li><a href="#return_if">return_if(bool, value)</a></li>
-    <li><a href="#return_if_not">return_if_not(bool, value)</a></li>
-    <li><a href="#chroot">chroot(path)</a></li>
-    <li><a href="#fdclose">fdclose(fd)</a></li>
-    <li><a href="#flopen">flopen(file)</a></li>
-    <li><a href="#fdopen">fdopen(file)</a></li>
-    <li><a href="#closefrom">closefrom(fd)</a></li>
-    <li><a href="#pipe2">pipe2(file)</a></li>
-    <li><a href="#execve">execve(path, argt, arge)</a></li>
+    <li><a href="#retry_f">retry_f(on_fail, delay, retries)</a></li>
 </ul>
 <h2>Modules</h2>
 <ul class="nowrap">
@@ -108,7 +63,17 @@
 
 <h1>Module <code>lib</code></h1>
 <p>Configi standard library.</p>
-<p> Lua extensions and some unix utilities.</p>
+<p>
+
+<p> Lua extensions and some unix utilities.
+ Depends on cimicida and Luaposix.</p>
+
+<pre>
+VENDOR= lib cimicida
+VENDOR_C= posix
+</pre>
+
+</p>
 
 
 
@@ -123,6 +88,7 @@
     Write to a file descriptor.
   Wrapper to luaposix unistd.write.
 
+    </ul>
     </ul>
 
     <h3>Parameters:</h3>
@@ -155,6 +121,7 @@
     Checks the existence of a given path.
 
     </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -183,6 +150,7 @@
     Deduce the complete path name of an executable.
   Only checks standard locations.
 
+    </ul>
     </ul>
 
     <h3>Parameters:</h3>
@@ -213,6 +181,7 @@
  The sequence part of args are the arguments passed to the executable <br/>
  The dictionary part of args has options and override. See the following.<br/>
 
+    </ul>
     </ul>
 
     <h3>Parameters:</h3>
@@ -285,6 +254,7 @@
  The dictionary part of args has options and override. See the following.<br/>
 
     </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -353,6 +323,7 @@
     Read string from a polled STDIN.
 
     </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -381,6 +352,7 @@
     Write to given path name.
   Wraps lib.write().
 
+    </ul>
     </ul>
 
     <h3>Parameters:</h3>
@@ -414,6 +386,7 @@
     Write to give path name atomically.
  Wraps lib.write().
 
+    </ul>
     </ul>
 
     <h3>Parameters:</h3>
@@ -454,6 +427,7 @@
     Check if a given path name is a directory.
 
     </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -481,6 +455,7 @@
     <dd>
     Check if a given path name is a file.
 
+    </ul>
     </ul>
 
     <h3>Parameters:</h3>
@@ -510,6 +485,7 @@
     Check if a given path name is a symbolic link.
 
     </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -537,6 +513,7 @@
     <dd>
     Write to the syslog and a file if given.
 
+    </ul>
     </ul>
 
     <h3>Parameters:</h3>
@@ -581,6 +558,7 @@
  From luaposix.
 
     </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -606,12 +584,13 @@
 
 </dd>
     <dt>
-    <a name = "ename"></a>
-    <strong>ename()</strong>
+    <a name = "effective_username"></a>
+    <strong>effective_username()</strong>
     </dt>
     <dd>
     Get effective username.
 
+    </ul>
     </ul>
 
 
@@ -627,12 +606,13 @@
 
 </dd>
     <dt>
-    <a name = "rname"></a>
-    <strong>rname()</strong>
+    <a name = "real_username"></a>
+    <strong>real_username()</strong>
     </dt>
     <dd>
     Get real username.
 
+    </ul>
     </ul>
 
 
@@ -659,6 +639,7 @@
  Prepend '-' to the command to ignore the output ala lib.qexec(). <br/>
 
     </ul>
+    </ul>
 
 
 
@@ -680,6 +661,7 @@
     File part of a path.
  Same as posix.libgen.basename. Copied here for convenience.
 
+    </ul>
     </ul>
 
     <h3>Parameters:</h3>
@@ -710,6 +692,7 @@
  Same as posix.libgen.dirname. Copied here for convenience.
 
     </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
@@ -738,12 +721,13 @@
     Split a file name.
 
     </ul>
+    </ul>
 
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">str</span>
             <span class="types"><span class="type">string</span></span>
-         policy name
+         path name
         </li>
     </ul>
 
@@ -765,1424 +749,45 @@
 
 </dd>
     <dt>
-    <a name = "printf"></a>
-    <strong>printf(str, ...)</strong>
+    <a name = "retry_f"></a>
+    <strong>retry_f(on_fail, delay, retries)</strong>
     </dt>
     <dd>
-    Output formatted string to the current output.
+    Retry factory.
 
+    </ul>
     </ul>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         C-like string
+        <li><span class="parameter">on_fail</span>
+            <span class="types"><span class="type">function</span></span>
+         function to run in case of failure. Takes in the second return value from the retried function as an argument.
         </li>
-        <li><span class="parameter">...</span>
-            <span class="types"><span class="type">varargs</span></span>
-         Variable number of arguments to interpolate str
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "fprintf"></a>
-    <strong>fprintf(fd, str, ...)</strong>
-    </dt>
-    <dd>
-    Output formatted string to a specified output.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">fd</span>
-            <span class="types"><span class="type">userdata</span></span>
-         stream/descriptor
-        </li>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         C-like string
-        </li>
-        <li><span class="parameter">...</span>
-            <span class="types"><span class="type">varargs</span></span>
-         Variable number of arguments to interpolate str
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "warn"></a>
-    <strong>warn(str, ...)</strong>
-    </dt>
-    <dd>
-    Output formatted string to STDERR.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         C-like string
-        </li>
-        <li><span class="parameter">...</span>
-            <span class="types"><span class="type">varargs</span></span>
-         Variable number of arguments to interpolate str
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "errorf"></a>
-    <strong>errorf(str, ...)</strong>
-    </dt>
-    <dd>
-    Output formatted string to STDERR and return 1 as the exit status.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         C-like string
-        </li>
-        <li><span class="parameter">...</span>
-            <span class="types"><span class="type">varargs</span></span>
-         Variable number of arguments to interpolate str
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "assertf"></a>
-    <strong>assertf(v, str, ...)</strong>
-    </dt>
-    <dd>
-    Call cimicida.errorf if the first argument is false (i.e.  nil or false).
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">v</span>
-            <span class="types"><span class="type">bool</span></span>
-         value to evaluate
-        </li>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         C-like string
-        </li>
-        <li><span class="parameter">...</span>
-            <span class="types"><span class="type">varargs</span></span>
-         Variable number of arguments to interpolate str
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "append"></a>
-    <strong>append(str, a)</strong>
-    </dt>
-    <dd>
-    Append a line break and string to an input string.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         input string
-        </li>
-        <li><span class="parameter">a</span>
-            <span class="types"><span class="type">string</span></span>
-         string to append to str
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">string</span></span>
-        new string
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "time_hm"></a>
-    <strong>time_hm()</strong>
-    </dt>
-    <dd>
-    Time in the strftime(3) format %H:%M.
-
-    </ul>
-
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">string</span></span>
-        the time as a string
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "date_ymd"></a>
-    <strong>date_ymd()</strong>
-    </dt>
-    <dd>
-    Date in the strftime(3) format %Y-%m-%d.
-
-    </ul>
-
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">string</span></span>
-        the date as a string
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "timestamp"></a>
-    <strong>timestamp()</strong>
-    </dt>
-    <dd>
-    Timestamp in the strftime(3) format %Y-%m-%d %H:%M:%S %Z%z.
-
-    </ul>
-
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">string</span></span>
-        the timestamp as a string
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "find_string"></a>
-    <strong>find_string(tbl, str, plain)</strong>
-    </dt>
-    <dd>
-    Check if a table has an specified string.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">tbl</span>
-            <span class="types"><span class="type">table</span></span>
-         table to search
-        </li>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         plain string or pattern to look for in tbl
-        </li>
-        <li><span class="parameter">plain</span>
-            <span class="types"><span class="type">bool</span></span>
-         if true, turns off pattern matching facilities
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">bool</span></span>
-        a boolean value, true if v is found, nil otherwise
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "arr_to_rec"></a>
-    <strong>arr_to_rec(tbl, def)</strong>
-    </dt>
-    <dd>
-    Convert an array to a record.
- Array values are converted into field names.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">tbl</span>
-            <span class="types"><span class="type">table</span></span>
-         the properly sequenced table to convert
-        </li>
-        <li><span class="parameter">def</span>
-         default value for each field in the record. Should not be nil
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">table</span></span>
-        the converted table
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "ln_to_tbl"></a>
-    <strong>ln_to_tbl(str)</strong>
-    </dt>
-    <dd>
-    Convert string to table.
- Each line is a table value.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         string to convert
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">table</span></span>
-        a new table
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "word_to_tbl"></a>
-    <strong>word_to_tbl(str)</strong>
-    </dt>
-    <dd>
-    Split alphanumeric matches of a string into table values.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         string to convert
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">table</span></span>
-        a new
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "str_to_tbl"></a>
-    <strong>str_to_tbl(str)</strong>
-    </dt>
-    <dd>
-    Split non-space character matches of a string into table values.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         string to convert
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">table</span></span>
-        a new table
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "escape_pattern"></a>
-    <strong>escape_pattern(str)</strong>
-    </dt>
-    <dd>
-    Escape a string for pattern usage.
- From lua-nucleo.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         string to escape
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">string</span></span>
-        a new string
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "filter_tbl_value"></a>
-    <strong>filter_tbl_value(tbl, patt, plain)</strong>
-    </dt>
-    <dd>
-    Filter table values.
- Adapted from <a href="http://stackoverflow.com/questions/12394841/safely-remove-items-from-an-array-table-while-iterating">http://stackoverflow.com/questions/12394841/safely-remove-items-from-an-array-table-while-iterating</a>
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">tbl</span>
-            <span class="types"><span class="type">table</span></span>
-         table to operate on
-        </li>
-        <li><span class="parameter">patt</span>
-            <span class="types"><span class="type">string</span></span>
-         pattern to filter
-        </li>
-        <li><span class="parameter">plain</span>
-            <span class="types"><span class="type">bool</span></span>
-         set to true if true, turns of pattern matching facilities
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">table</span></span>
-        modified table
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "file_to_tbl"></a>
-    <strong>file_to_tbl(file)</strong>
-    </dt>
-    <dd>
-    Convert file into a table.
- Each line is a table value
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">file</span>
-            <span class="types"><span class="type">string</span></span>
-         file to convert
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">table</span></span>
-        a new table
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "find_in_tbl"></a>
-    <strong>find_in_tbl(tbl, str, plain)</strong>
-    </dt>
-    <dd>
-    Find a string in a table value.
- string is a plain string not a pattern
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">tbl</span>
-            <span class="types"><span class="type">table</span></span>
-         properly sequenced table to traverse
-        </li>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         string or pattern to look for
-        </li>
-        <li><span class="parameter">plain</span>
-            <span class="types"><span class="type">bool</span></span>
-         set to true if true, turns of pattern matching facilities
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">number</span></span>
-        the matching index if string is found, nil otherwise
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "shallow_cp"></a>
-    <strong>shallow_cp(tbl)</strong>
-    </dt>
-    <dd>
-    Do a shallow copy of a table.
- An empty table is created in the copy when a table is encountered
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">tbl</span>
-            <span class="types"><span class="type">table</span></span>
-         table to be copied
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">table</span></span>
-        a new table
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "split_path"></a>
-    <strong>split_path(path)</strong>
-    </dt>
-    <dd>
-    Split a path into its immediate location and file/directory components.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">path</span>
-            <span class="types"><span class="type">string</span></span>
-         path to split
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-        <li>
-           <span class="types"><span class="type">string</span></span>
-        location</li>
-        <li>
-           <span class="types"><span class="type">string</span></span>
-        file/directory</li>
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "test_open"></a>
-    <strong>test_open(file)</strong>
-    </dt>
-    <dd>
-    Check if a path is a file or not.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">file</span>
-            <span class="types"><span class="type">string</span></span>
-         path to the file
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-        true if path is a file, nil otherwise
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "fopen"></a>
-    <strong>fopen(file)</strong>
-    </dt>
-    <dd>
-    Read a file/path.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">file</span>
-            <span class="types"><span class="type">string</span></span>
-         path to the file
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">string</span></span>
-        the contents of the file, nil if the file cannot be read or opened
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "fwrite"></a>
-    <strong>fwrite(path, str, mode)</strong>
-    </dt>
-    <dd>
-    Write a string to a file/path.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">path</span>
-            <span class="types"><span class="type">string</span></span>
-         path to the file
-        </li>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         string to write
-        </li>
-        <li><span class="parameter">mode</span>
-            <span class="types"><span class="type">string</span></span>
-         io.open mode
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-        true if the write succeeded, nil and the error message otherwise
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "get_ln"></a>
-    <strong>get_ln(ln, file)</strong>
-    </dt>
-    <dd>
-    Get line.
- Given a line number return the line as a string.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">ln</span>
+        <li><span class="parameter">delay</span>
             <span class="types"><span class="type">number</span></span>
-         line number
+         seconds to sleep after a failure. Default is 30 seconds.
         </li>
-        <li><span class="parameter">file</span>
-            <span class="types"><span class="type">string</span></span>
-
-
-
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">string</span></span>
-        the line
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "sub"></a>
-    <strong>sub(str, tbl)</strong>
-    </dt>
-    <dd>
-    Simple string interpolation.
- Given a record, interpolate by replacing field names with the respective value
- Example:
- tbl = { "field" = "value" }
- str = [[ this is the {{ field }} ]]
- If passed with these arguments 'this is the {{ field }}' becomes 'this is the value'
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         string to interpolate
-        </li>
-        <li><span class="parameter">tbl</span>
-            <span class="types"><span class="type">table</span></span>
-         table (record) to deduce values from
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">string</span></span>
-        processed string
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "exit_string"></a>
-    <strong>exit_string(proc, status, code)</strong>
-    </dt>
-    <dd>
-    Generate a string based on the values returned by os.execute or px.exec.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">proc</span>
-            <span class="types"><span class="type">string</span></span>
-         process name
-        </li>
-        <li><span class="parameter">status</span>
-            <span class="types"><span class="type">string</span></span>
-         exit status
-        </li>
-        <li><span class="parameter">code</span>
+        <li><span class="parameter">retries</span>
             <span class="types"><span class="type">number</span></span>
-         exit code
+         number of tries. Default is to retry indefinitely.
         </li>
     </ul>
 
     <h3>Returns:</h3>
     <ol>
 
-           <span class="types"><span class="type">string</span></span>
-        a formatted string
+           <span class="types"><span class="type">function</span></span>
+        a function that runs ...
     </ol>
 
 
 
-
-</dd>
-    <dt>
-    <a name = "truthy"></a>
-    <strong>truthy(s)</strong>
-    </dt>
-    <dd>
-    Convert the string "yes" or "true" to boolean true.
-
-    </ul>
-
-    <h3>Parameters:</h3>
+    <h3>Usage:</h3>
     <ul>
-        <li><span class="parameter">s</span>
-            <span class="types"><span class="type">string</span></span>
-         string to evaluate
-        </li>
+        <pre class="example">run = retry_f(<span class="keyword">function</span>() <span class="keyword">end</span>, <span class="number">3</span>, <span class="number">1</span>)
+run(<span class="global">string</span>.match, <span class="string">"match"</span>, <span class="string">"match"</span>)</pre>
     </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">bool</span></span>
-        the boolean true if the string matches, nil otherwise
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "falsy"></a>
-    <strong>falsy(s)</strong>
-    </dt>
-    <dd>
-    Convert the string "no" or "false" to boolean false.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">s</span>
-            <span class="types"><span class="type">string</span></span>
-         string to evaluate
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">bool</span></span>
-        the boolean true if the string matches, nil otherwise
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "popen"></a>
-    <strong>popen(str, cwd, _ignore_error, _return_code)</strong>
-    </dt>
-    <dd>
-    Wrap io.popen also known as popen(3).
- <br/>
- 1. Exit immediately if a command exits with a non-zero status<br/>
- 2. Pathname expansion is disabled<br/>
- 3. STDIN is closed<br/>
- 4. Copy STDERR to STDOUT<br/>
- 5. Finally replace the shell with the command
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         command to popen(3)
-        </li>
-        <li><span class="parameter">cwd</span>
-            <span class="types"><span class="type">string</span></span>
-         current working directory
-        </li>
-        <li><span class="parameter">_ignore_error</span>
-            <span class="types"><span class="type">bool</span></span>
-         boolean setting to ignore errors
-        </li>
-        <li><span class="parameter">_return_code</span>
-            <span class="types"><span class="type">bool</span></span>
-         boolean setting to return exit code
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-        <li>
-           <span class="types"><span class="type">string</span></span>
-        the output as a string if the command exits with a non-zero status, nil otherwise</li>
-        <li>
-           <span class="types"><span class="type">string</span></span>
-        a status output from cimicida.exit_string as a string</li>
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "pwrite"></a>
-    <strong>pwrite(str, data)</strong>
-    </dt>
-    <dd>
-    Wrap io.popen also known as popen(3).
- Unlike cimicida.popen this writes to the pipe.
- The command has a script preamble.<br/>
- 1. Exit immediately if a command exits with a non-zero status<br/>
- 2. Pathname expansion is disabled<br/>
- 3. STDOUT is closed<br/>
- 4. STDERR is closed<br/>
- 5. Finally replace the shell with the command
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         command to popen(3)
-        </li>
-        <li><span class="parameter">data</span>
-            <span class="types"><span class="type">string</span></span>
-         string to feed to the pipe
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-        <li>
-           <span class="types"><span class="type">bool</span></span>
-        true if the command exits with a non-zero status, nil otherwise</li>
-        <li>
-           <span class="types"><span class="type">string</span></span>
-        a status output from cimicida.exit_string as a string</li>
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "system"></a>
-    <strong>system(str)</strong>
-    </dt>
-    <dd>
-    Wrap os.execute also known as system(3).
- The command has a script preamble.<br/>
- 1. Exit immediately if a command exits with a non-zero status<br/>
- 2. Pathname expansion is disabled<br/>
- 3. STDERR and STDIN are closed<br/>
- 4. STDOUT is piped to /dev/null<br/>
- 5. Finally replace the shell with the command
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         command to pass to system(3)
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-        <li>
-           <span class="types"><span class="type">bool</span></span>
-        true if exit code is equal to zero, nil otherwise</li>
-        <li>
-           <span class="types"><span class="type">string</span></span>
-        a status output from cimicida.exit_string as a string</li>
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "execute"></a>
-    <strong>execute(str)</strong>
-    </dt>
-    <dd>
-    Wrap os.execute also known as system(3).
- Similar to cimicida.system but it does not replace the shell.
- Suitable for scripts.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         string to pass to system(3)
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-        <li>
-           <span class="types"><span class="type">bool</span></span>
-        true if exit code is equal to zero, nil otherwise</li>
-        <li>
-           <span class="types"><span class="type">string</span></span>
-        a status output from cimicida.exit_string as a string</li>
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "pipeline"></a>
-    <strong>pipeline(...)</strong>
-    </dt>
-    <dd>
-    Run a shell pipe.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">...</span>
-            <span class="types"><span class="type">varargs</span></span>
-         a vararg containing the command pipe. The first argument should be popen or execute
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">string</span></span>
-        the output from cimicida.popen or cimicida.execute, nil if popen or execute was not passed
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "time"></a>
-    <strong>time(f, ...)</strong>
-    </dt>
-    <dd>
-    Time a function run.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">f</span>
-            <span class="types"><span class="type">func</span></span>
-         the function
-        </li>
-        <li><span class="parameter">...</span>
-            <span class="types"><span class="type">varargs</span></span>
-         a vararg containing the arguments for the function
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-        <li>
-        the return value(s) of f(...)</li>
-        <li>
-           <span class="types"><span class="type">number</span></span>
-        the seconds elapsed as a number</li>
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "escape_quotes"></a>
-    <strong>escape_quotes(str)</strong>
-    </dt>
-    <dd>
-    Escape quotes ",'.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">str</span>
-            <span class="types"><span class="type">string</span></span>
-         string to quote
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">string</span></span>
-        quoted string
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "flog"></a>
-    <strong>flog(file, ident, msg)</strong>
-    </dt>
-    <dd>
-    Log to a file.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">file</span>
-            <span class="types"><span class="type">string</span></span>
-         path name of the file
-        </li>
-        <li><span class="parameter">ident</span>
-            <span class="types"><span class="type">string</span></span>
-         identification
-        </li>
-        <li><span class="parameter">msg</span>
-            <span class="types"><span class="type">string</span></span>
-         string to log (STRING)
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">bool</span></span>
-        a boolean value, true if no errors, nil otherwise
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "insert_if"></a>
-    <strong>insert_if(bool, list, pos, value)</strong>
-    </dt>
-    <dd>
-    Insert a value to a table position if the first argument is not nil or not false.
- Wraps table.insert().
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">bool</span>
-            <span class="types"><span class="type">bool</span></span>
-         value to evaluate
-        </li>
-        <li><span class="parameter">list</span>
-            <span class="types"><span class="type">table</span></span>
-         table to insert into
-        </li>
-        <li><span class="parameter">pos</span>
-            <span class="types"><span class="type">number</span></span>
-         position index in the table
-        </li>
-        <li><span class="parameter">value</span>
-         value to insert (VALUE)
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "return_if"></a>
-    <strong>return_if(bool, value)</strong>
-    </dt>
-    <dd>
-    Return the second argument if the first argument is not nil or not false.
- For value functions there should be no evaluation in the arguments.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">bool</span>
-         value to evaluate
-        </li>
-        <li><span class="parameter">value</span>
-         value to return if first argument does not evaluate to nil or false
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-        value if first argument does not evaluate to nil or false
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "return_if_not"></a>
-    <strong>return_if_not(bool, value)</strong>
-    </dt>
-    <dd>
-    Return the second argument if the first argument is nil or false.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">bool</span>
-         value to evaluate
-        </li>
-        <li><span class="parameter">value</span>
-         value to return if first argument evaluates to nil or false
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-        value if first argument evaluates to nil or false
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "chroot"></a>
-    <strong>chroot(path)</strong>
-    </dt>
-    <dd>
-    chroot(2) wrapper.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">path</span>
-            <span class="types"><span class="type">string</span></span>
-         or directory to chroot into.
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">bool</span></span>
-        true if successful; otherwise nil
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "fdclose"></a>
-    <strong>fdclose(fd)</strong>
-    </dt>
-    <dd>
-    close(2) a file descriptor.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">fd</span>
-            <span class="types"><span class="type">int</span></span>
-         file descriptor to close
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">bool</span></span>
-        true if successful; otherwise nil
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "flopen"></a>
-    <strong>flopen(file)</strong>
-    </dt>
-    <dd>
-    Wrapper to flopen(3) -- Reliably open and lock a file.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">file</span>
-            <span class="types"><span class="type">string</span></span>
-         to open and lock
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">int</span></span>
-        a new file handle, or, in case of errors, nil plus an error message
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "fdopen"></a>
-    <strong>fdopen(file)</strong>
-    </dt>
-    <dd>
-    Wrapper to fdopen(3).
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">file</span>
-            <span class="types"><span class="type">string</span></span>
-         to open
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">int</span></span>
-        a new file handle, or, in case of errors, nil plus an error message
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "closefrom"></a>
-    <strong>closefrom(fd)</strong>
-    </dt>
-    <dd>
-    Wrapper to closefrom(2) -- delete open file descriptors.
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">fd</span>
-            <span class="types"><span class="type">int</span></span>
-         file descriptors greater or equal to this is deleted
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-           <span class="types"><span class="type">bool</span></span>
-        true always
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "pipe2"></a>
-    <strong>pipe2(file)</strong>
-    </dt>
-    <dd>
-    Wrapper to pipe2(2).
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">file</span>
-            <span class="types"><span class="type">int</span></span>
-         descriptor
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-        <li>
-           <span class="types"><span class="type">int</span></span>
-        fd read end descriptor</li>
-        <li>
-           <span class="types"><span class="type">int</span></span>
-        fd write end descriptor</li>
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "execve"></a>
-    <strong>execve(path, argt, arge)</strong>
-    </dt>
-    <dd>
-    Execute a program using execve(2)
-
-    </ul>
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">path</span>
-            <span class="types"><span class="type">string</span></span>
-         of executable
-        </li>
-        <li><span class="parameter">argt</span>
-            <span class="types"><span class="type">table</span></span>
-         arguments (table can include index 0)
-        </li>
-        <li><span class="parameter">arge</span>
-            <span class="types"><span class="type">table</span></span>
-         environment
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-        <li>
-        nil or</li>
-        <li>
-           <span class="types"><span class="type">string</span></span>
-        error message</li>
-    </ol>
-
-
-
 
 </dd>
 </dl>
@@ -2191,8 +796,8 @@
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.5</a></i>
-<i style="float:right;">Last updated 2016-10-03 16:36:48 </i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2017-05-09 15:50:37 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

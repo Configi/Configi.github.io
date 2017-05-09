@@ -99,6 +99,12 @@
                     
                         
 <li >
+    <a href="../roles/">Roles</a>
+</li>
+
+                    
+                        
+<li >
     <a href="../cli/">Cli</a>
 </li>
 
@@ -190,10 +196,10 @@
 
 <h1 id="about-configi-modules">About Configi modules</h1>
 <hr />
-<p>Configi modules are regular Lua modules which return a table. It was decided to call them modules too since they are essentially the same as Lua modules. The module terminology is also very common and easily understood in the software industry.</p>
+<p>Configi modules are regular Lua modules which return a table. It was decided to call them modules too since the term module is common and easily understood in the software industry.</p>
 <p>Here is a contrived module to demonstrate the parts:</p>
 <pre><code>local ENV, M, example = {}, {}, {}
-local cfg = require&quot;configi&quot;
+local cfg = require&quot;cfg-core.lib&quot;
 local lib = require&quot;lib&quot;
 local cmd = lib.cmd
 _ENV = ENV
@@ -210,7 +216,7 @@ function example.present(S)
     M.report = {
         repaired = &quot;example.present: Ok&quot;,
             kept = &quot;example.present: Skipped&quot;,
-          failed = &quot;example.presnet: Error&quot;
+          failed = &quot;example.present: Error&quot;
     }
     return function(P)
         P.what = S
@@ -246,7 +252,7 @@ _ENV = ENV
 </thead>
 <tbody>
 <tr>
-<td><strong>configi</strong></td>
+<td><strong>cfg</strong></td>
 <td>The core Lua module of Configi. It is the <strong>only</strong> required Lua module.</td>
 </tr>
 <tr>
@@ -302,17 +308,19 @@ end
 </code></pre>
 <p>A function is returned and it takes a single table as the argument. The subject string <code>S</code> is assigned to one of the parameters (usually a required parameter). In this case, the key <code>what</code> is  assigned <code>S</code>.</p>
 <p>You might be wondering why this is returning a closure. A closure allows for calling the promise/function like this:</p>
-<pre><code>example.present"subject"
-  task: "something"
+<pre><code>example.present"subject"{
+  task = "something"
+}
 </code></pre>
 <p>Here <em>subject</em> is the string assigned to <code>S</code> and then assigned to <code>P.what</code>. The string <em>something</em> is assigned to <code>P.task</code></p>
 <p><code>cfg.init</code> takes two arguments, the <code>P</code> (parameters) table and <code>M</code> (used for module attributes) table. It is called by each module function to initialize <code>P</code> and returns the tables for module functions <code>F</code> and <code>R</code> a table that is used to store results.</p>
-<p><code>P</code> argument to the function is the dictionary of parameter-arguments. They are written as <code>parameter: "argument"</code> (Moonscript) or <code>parameter = "argument"</code> (Lua) in policies.</p>
+<p><code>P</code> argument to the function is the dictionary of parameter-arguments. They are written as <code>parameter = "argument"</code> in policies.</p>
 <p>Configi has support for handlers. The value of the <code>notify_kept</code> parameter is called when a function is skipped. The value of <code>notify</code> when the function succeeds with the prescribed operation. The value of to <code>notify_failed</code> when the operation fails.</p>
 <p>The following example promise if applied triggers the handler tagged with <em>repaired</em>:</p>
-<pre><code>example.present"subject"
-  notify: "repaired"
-  task: "something"
+<pre><code>example.present"subject"{
+  notify = "repaired",
+    task = "something"
+}
 </code></pre>
 <p>Some modules require you to micromanage operations, messages and results. Here's an equivalent of the function above:</p>
 <pre><code>function example.present(S)
@@ -320,7 +328,7 @@ end
     M.report = {
         repaired = &quot;example.present: Ok&quot;,
             kept = &quot;example.present: Skipped&quot;,
-          failed = &quot;example.presnet: Error&quot;
+          failed = &quot;example.present: Error&quot;
     }
     return function(P)
         P.what = S
@@ -359,12 +367,7 @@ return example
 <p>The list of reserved parameters:</p>
 <ol>
 <li>comment</li>
-<li>debug</li>
-<li>test</li>
-<li>syslog</li>
-<li>log</li>
 <li>handle</li>
-<li>register</li>
 <li>context</li>
 <li>notify</li>
 <li>notify_failed</li>
@@ -378,8 +381,9 @@ return example
 <p>Modules are auto-loaded based on the name of the called module function. For example in a script containing the following snippet, module <code>example</code> is auto-loaded.</p>
 </li>
 </ul>
-<pre><code>example.present&quot;subject&quot;
-  task: &quot;yes&quot;
+<pre><code>example.present&quot;subject&quot;{
+  task = true
+}
 </code></pre>
 
 <ul>

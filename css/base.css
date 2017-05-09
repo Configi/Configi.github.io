@@ -61,6 +61,7 @@ div.col-md-9 img {
 }
 
 code {
+    font-family: "Monaco", monospace;
     padding: 1px 3px;
     background: #f5f5f5;
     border: solid 1px #ccc;

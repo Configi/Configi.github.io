@@ -98,6 +98,12 @@
 
                     
                         
+<li >
+    <a href="../roles/">Roles</a>
+</li>
+
+                    
+                        
 <li class="active">
     <a href="./">Cli</a>
 </li>
@@ -147,7 +153,7 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../modules/">
+                    <a rel="next" href="../roles/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
@@ -183,21 +189,23 @@
             <div class="col-md-9" role="main">
 
 <h4 id="options-of-the-cfg-executable">Options of the cfg executable</h4>
-<pre><code>  cfg [-h] [-V] [-v] [-t] [-D] [-p N] [-s] [-l FILE] [-m] [-g TAG] [-r N] -f &quot;CONFIGI POLICY&quot;
+<pre><code>    cfg [-h] [-V] [-v] [-d] [-t] [-w] [-p N] [-s] [-l FILE] [-m] [-g TAG] [-r N] [-f &quot;POLICY&quot;] [-e &quot;POLICY&quot;]
 
-    Options:
-      -h, --help          This help text.
-      -V, --version       Print version.
-      -v, --debug         Turn on debugging messages.
-      -t, --test          Dry-run mode. All operations are expected to succeed. Turns on debugging.
-      -D, --daemon        Daemon mode. Watch for IN_MODIFY and IN_ATTRIB events to the policy file.
-      -p, --periodic      Do a run after N seconds.
-      -s, --syslog        Enable logging to syslog.
-      -l, --log           Log to an specified file.
-      -m, --msg           Show debug and test messages.
-      -g, --tag           Only run specified tag(s).
-      -r, --runs          Run the policy N times if a failure is encountered. Default is 3.
-      -f, --file          Path to the Configi policy.
+        Options:
+            -h, --help                  This help text.
+            -V, --version               Print version.
+            -v, --debug                 Turn on debugging messages.
+            -d, --dump                  Dump tree.
+            -t, --test                  Dry-run mode. All operations are expected to succeed. Turns on debugging.
+            -w, --watch                 Watch for inotify IN_MODIFY and IN_ATTRIB events to the main policy file.
+            -p, --periodic              Do a run after N seconds.
+            -s, --syslog                Enable logging to syslog.
+            -l, --log                   Log to an specified file.
+            -m, --msg                   Show debug and test messages.
+            -g, --tag                   Only run specified tag(s).
+            -r, --runs                  Run the policy N times if a failure is encountered. Default is 3.
+            -f, --file                  Path to the Configi policy.
+            -e, --embedded              Name of the embedded Configi policy.
 </code></pre></div>
         </div>
 

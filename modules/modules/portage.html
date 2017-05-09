@@ -43,19 +43,22 @@
   <li><a href="../modules/apt.html">apt</a></li>
   <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
   <li><a href="../modules/cron.html">cron</a></li>
+  <li><a href="../modules/edit.html">edit</a></li>
   <li><a href="../modules/file.html">file</a></li>
   <li><a href="../modules/git.html">git</a></li>
   <li><a href="../modules/hostname.html">hostname</a></li>
   <li><a href="../modules/iptables.html">iptables</a></li>
+  <li><a href="../modules/luarocks.html">luarocks</a></li>
   <li><a href="../modules/make.html">make</a></li>
   <li><a href="../modules/openrc.html">openrc</a></li>
   <li><a href="../modules/opkg.html">opkg</a></li>
   <li><strong>portage</strong></li>
+  <li><a href="../modules/process.html">process</a></li>
   <li><a href="../modules/sha256.html">sha256</a></li>
   <li><a href="../modules/shell.html">shell</a></li>
   <li><a href="../modules/systemd.html">systemd</a></li>
   <li><a href="../modules/sysvinit.html">sysvinit</a></li>
-  <li><a href="../modules/textfile.html">textfile</a></li>
+  <li><a href="../modules/template.html">template</a></li>
   <li><a href="../modules/unarchive.html">unarchive</a></li>
   <li><a href="../modules/user.html">user</a></li>
   <li><a href="../modules/yum.html">yum</a></li>
@@ -90,7 +93,8 @@
     Install package atom.
  See emerge(1).
 
-    <h3>Subject:</h3>
+    </ul>
+    <h3>Promiser:</h3>
     <ul>
          package atom. Can be "category/package" or "category/package-version"
     </ul>
@@ -107,31 +111,31 @@
          package version
         </li>
         <li><span class="parameter">deep</span>
-         evaluate entire dependency tree [CHOICES: "yes","no"]
+         evaluate entire dependency tree [Default: false]
         </li>
         <li><span class="parameter">newuse</span>
-         reinstall packages that had a change in its USE flags [CHOICES: "yes","no"]
+         reinstall packages that had a change in its USE flags [Default: false]
         </li>
         <li><span class="parameter">nodeps</span>
-         do not merge dependencies [CHOICES: "yes","no"]
+         do not merge dependencies [Default: false]
         </li>
         <li><span class="parameter">noreplace</span>
-         skip already installed packages [CHOICES: "yes","no"]
+         skip already installed packages [Default: false]
         </li>
         <li><span class="parameter">oneshot</span>
-         do not update the world file [CHOICES: "yes","no"] [DEFAULT: "yes"]
+         do not update the world file [Default: true]
         </li>
         <li><span class="parameter">onlydeps</span>
-         only merge dependencies [CHOICES: "yes","no"]
+         only merge dependencies [Default: false]
         </li>
         <li><span class="parameter">sync</span>
-         perform an <code>emerge --sync</code> before installing package(s) [CHOICES: "yes","no"]
+         perform an <code>emerge --sync</code> before installing packages) [Default: false]
         </li>
         <li><span class="parameter">update</span>
-         update package to the best version [CHOICES: "yes","no"]
+         update package to the best version [Default: false]
         </li>
         <li><span class="parameter">unmask</span>
-         enable auto-unmask and auto-unmask-write options [CHOICES: "yes","no"]
+         enable auto-unmask and auto-unmask-write options [Default: false]
         </li>
     </ul>
 
@@ -140,10 +144,11 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example">portage.present(<span class="string">"dev-util/strace"</span>)
-    version: <span class="string">"4.8"</span>
-portage.present(<span class="string">"dev-util/strace-4.8"</span>)!
-portage.present(<span class="string">"dev-util/strace"</span>)!</pre>
+        <pre class="example">portage.present(<span class="string">"dev-util/strace"</span>){
+    version = <span class="string">"4.8"</span>
+}
+portage.present(<span class="string">"dev-util/strace-4.8"</span>)()
+portage.present(<span class="string">"dev-util/strace"</span>)()</pre>
     </ul>
 
 </dd>
@@ -154,7 +159,8 @@ portage.present(<span class="string">"dev-util/strace"</span>)!</pre>
     <dd>
     Remove package atom.
 
-    <h3>Subject:</h3>
+    </ul>
+    <h3>Promiser:</h3>
     <ul>
          package atom. Can be "category/package" or "category/package-version"
     </ul>
@@ -170,7 +176,7 @@ portage.present(<span class="string">"dev-util/strace"</span>)!</pre>
          package atom to unmerge [REQUIRED] [ALIAS: package]
         </li>
         <li><span class="parameter">depclean</span>
-         Remove packages not associated with explicitly installed packages [CHOICES: "yes","no"] [DEFAULT: "no"]
+         Remove packages not associated with explicitly installed packages [DEFAULT: false]
         </li>
     </ul>
 
@@ -179,7 +185,7 @@ portage.present(<span class="string">"dev-util/strace"</span>)!</pre>
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example">portage.absent(<span class="string">"dev-util/strace"</span>)!</pre>
+        <pre class="example">portage.absent(<span class="string">"dev-util/strace"</span>)()</pre>
     </ul>
 
 </dd>
@@ -189,8 +195,8 @@ portage.present(<span class="string">"dev-util/strace"</span>)!</pre>
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.5</a></i>
-<i style="float:right;">Last updated 2016-10-03 16:36:00 </i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2017-05-09 15:50:38 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

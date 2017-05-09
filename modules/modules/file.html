@@ -48,19 +48,22 @@
   <li><a href="../modules/apt.html">apt</a></li>
   <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
   <li><a href="../modules/cron.html">cron</a></li>
+  <li><a href="../modules/edit.html">edit</a></li>
   <li><strong>file</strong></li>
   <li><a href="../modules/git.html">git</a></li>
   <li><a href="../modules/hostname.html">hostname</a></li>
   <li><a href="../modules/iptables.html">iptables</a></li>
+  <li><a href="../modules/luarocks.html">luarocks</a></li>
   <li><a href="../modules/make.html">make</a></li>
   <li><a href="../modules/openrc.html">openrc</a></li>
   <li><a href="../modules/opkg.html">opkg</a></li>
   <li><a href="../modules/portage.html">portage</a></li>
+  <li><a href="../modules/process.html">process</a></li>
   <li><a href="../modules/sha256.html">sha256</a></li>
   <li><a href="../modules/shell.html">shell</a></li>
   <li><a href="../modules/systemd.html">systemd</a></li>
   <li><a href="../modules/sysvinit.html">sysvinit</a></li>
-  <li><a href="../modules/textfile.html">textfile</a></li>
+  <li><a href="../modules/template.html">template</a></li>
   <li><a href="../modules/unarchive.html">unarchive</a></li>
   <li><a href="../modules/user.html">user</a></li>
   <li><a href="../modules/yum.html">yum</a></li>
@@ -94,7 +97,8 @@
     <dd>
     Set path attributes such as the mode, owner or group.
 
-    <h3>Subject:</h3>
+    </ul>
+    <h3>Promiser:</h3>
     <ul>
          path to file
     </ul>
@@ -119,10 +123,11 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example">file.attributes(<span class="string">"/etc/shadow"</span>)
-    mode: <span class="string">"0600"</span>
-    owner: <span class="string">"root"</span>
-    group: <span class="string">"root"</span></pre>
+        <pre class="example">file.attributes(<span class="string">"/etc/shadow"</span>){
+     mode = <span class="number">0600</span>,
+    owner = <span class="string">"root"</span>,
+    group = <span class="string">"root"</span>
+}</pre>
     </ul>
 
 </dd>
@@ -133,7 +138,8 @@
     <dd>
     Create a symlink.
 
-    <h3>Subject:</h3>
+    </ul>
+    <h3>Promiser:</h3>
     <ul>
          symlink path
     </ul>
@@ -155,8 +161,9 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example">file.link(<span class="string">"/home/ed/root"</span>)
-     src: <span class="string">"/"</span></pre>
+        <pre class="example">file.link(<span class="string">"/home/ed/root"</span>){
+    src = <span class="string">"/"</span>
+}</pre>
     </ul>
 
 </dd>
@@ -167,7 +174,8 @@
     <dd>
     Create a hard link.
 
-    <h3>Subject:</h3>
+    </ul>
+    <h3>Promiser:</h3>
     <ul>
          hard link path
     </ul>
@@ -189,8 +197,9 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example">file.hard(<span class="string">"/home/ed/root"</span>)
-     src: <span class="string">"/"</span></pre>
+        <pre class="example">file.hard(<span class="string">"/home/ed/root"</span>){
+    src = <span class="string">"/"</span>
+}</pre>
     </ul>
 
 </dd>
@@ -201,7 +210,8 @@
     <dd>
     Create a directory.
 
-    <h3>Subject:</h3>
+    </ul>
+    <h3>Promiser:</h3>
     <ul>
          directory path
     </ul>
@@ -220,10 +230,10 @@
          set the gid/group [ALIAS: gid]
         </li>
         <li><span class="parameter">force</span>
-         remove existing path before creating directory [DEFAULT: "no"]
+         remove existing path before creating directory [DEFAULT: "no", false]
         </li>
         <li><span class="parameter">backup</span>
-         rename existing path and prepend '.<em>configi</em>' to the name [DEFAULT: "no"]
+         rename existing path and prepend '.<em>configi</em>' to the name [DEFAULT: "no", false]
         </li>
     </ul>
 
@@ -232,7 +242,7 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example">file.directory(<span class="string">"/usr/portage"</span>)!</pre>
+        <pre class="example">file.directory(<span class="string">"/usr/portage"</span>)()</pre>
     </ul>
 
 </dd>
@@ -243,7 +253,8 @@
     <dd>
     Touch a path.
 
-    <h3>Subject:</h3>
+    </ul>
+    <h3>Promiser:</h3>
     <ul>
          path
     </ul>
@@ -268,7 +279,7 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example">file.touch(<span class="string">"/srv/.keep"</span>)!</pre>
+        <pre class="example">file.touch(<span class="string">"/srv/.keep"</span>)()</pre>
     </ul>
 
 </dd>
@@ -279,7 +290,8 @@
     <dd>
     Remove a path.
 
-    <h3>Subject:</h3>
+    </ul>
+    <h3>Promiser:</h3>
     <ul>
          path
     </ul>
@@ -300,7 +312,7 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example">file.absent(<span class="string">"/home/ed/.xinitrc"</span>)!</pre>
+        <pre class="example">file.absent(<span class="string">"/home/ed/.xinitrc"</span>)()</pre>
     </ul>
 
 </dd>
@@ -311,7 +323,8 @@
     <dd>
     Copy a path.
 
-    <h3>Subject:</h3>
+    </ul>
+    <h3>Promiser:</h3>
     <ul>
          path
     </ul>
@@ -324,13 +337,13 @@
          destination path [REQUIRED] [ALIAS: dest,target]
         </li>
         <li><span class="parameter">recurse</span>
-         recursively copy source [DEFAULT: "no"]
+         recursively copy source [DEFAULT: "no", false]
         </li>
         <li><span class="parameter">force</span>
-         remove existing destination before copying [DEFAULT: "no"]
+         remove existing destination before copying [DEFAULT: "no", false]
         </li>
         <li><span class="parameter">backup</span>
-         rename existing path and prepend '.<em>configi</em>' to the name [DEFAULT: "no"]
+         rename existing path and prepend '.<em>configi</em>' to the name [DEFAULT: "no", false]
         </li>
     </ul>
 
@@ -339,8 +352,9 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example">file.copy(<span class="string">"/home/ed"</span>)
-     dest: <span class="string">"/mnt/backups"</span></pre>
+        <pre class="example">file.copy(<span class="string">"/home/ed"</span>){
+    dest = <span class="string">"/mnt/backups"</span>
+}</pre>
     </ul>
 
 </dd>
@@ -350,8 +364,8 @@
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.5</a></i>
-<i style="float:right;">Last updated 2016-10-03 16:36:00 </i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2017-05-09 15:50:38 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

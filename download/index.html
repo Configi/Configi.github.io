@@ -99,6 +99,12 @@
                     
                         
 <li >
+    <a href="../reference/roles/">Roles</a>
+</li>
+
+                    
+                        
+<li >
     <a href="../reference/cli/">Cli</a>
 </li>
 
@@ -212,7 +218,7 @@ VmSwap:        0 kB
 </code></pre>
 <p>It should compile on any recent Linux distributions but it may lack the necessary modules to be useful. This should improve with module contributions for your distribution.</p>
 <h1 id="download">Download</h1>
-<p><a href="https://github.com/Configi/configi/releases/tag/configi-1.0.0">configi-1.0.0</a></p>
+<p><a href="https://github.com/Configi/configi/releases/tag/configi-2.0.0">configi-2.0.0</a></p>
 <h1 id="requirements">Requirements</h1>
 <p>The build time requirements are GNUMake and a compiler-toolchain such as GCC or Clang.</p>
 <p>Runtime dependencies will depend on the module that you want to compile in. As much as possible core modules do not link to shared libraries. If dynamically linked the only runtime dependency of the <code>cfg</code> executable is a libc.</p>
@@ -223,13 +229,13 @@ VmSwap:        0 kB
 <h1 id="building">Building</h1>
 <p>The build system is from <a href="https://github.com/tongson/omnia">Omnia</a>.</p>
 <p>Unpack the archive, change to the directory then run <code>make</code>.</p>
-<pre><code># tar -xf configi-1.0.0.tar.gz
-# cd configi-1.0.0
+<pre><code># tar -xf configi-2.0.0.tar.gz
+# cd configi-2.0.0
 # make
 </code></pre>
 <h1 id="running">Running</h1>
-<pre><code># cd configi-1.0.0
-# ./cfg -f path_to_your_policy
+<pre><code># cd configi-2.0.0
+# bin/cfg-agent -f path_to_your_policy
 </code></pre></div>
         </div>
 

@@ -99,6 +99,12 @@
                     
                         
 <li >
+    <a href="../roles/">Roles</a>
+</li>
+
+                    
+                        
+<li >
     <a href="../cli/">Cli</a>
 </li>
 
@@ -177,17 +183,17 @@
     
         <li class="main active"><a href="#module-functions">Module Functions</a></li>
         
-            <li><a href="#msgs-s-b">msg(s, s, b)</a></li>
+            <li><a href="#msgstr-str-bool">msg(str, str, bool)</a></li>
         
-            <li><a href="#runf-a">run(f, a)</a></li>
+            <li><a href="#runfunc-args">run(func, args)</a></li>
         
-            <li><a href="#xrunf-a">xrun(f, a)</a></li>
+            <li><a href="#xrunfunc-args">xrun(func, args)</a></li>
         
-            <li><a href="#openu">open(u)</a></li>
+            <li><a href="#openstr">open(str)</a></li>
         
-            <li><a href="#kepts">kept(s)</a></li>
+            <li><a href="#keptstr">kept(str)</a></li>
         
-            <li><a href="#results-b-m">result(s, b, m)</a></li>
+            <li><a href="#resultstr-bool-str">result(str, bool, str)</a></li>
         
     
     </ul>
@@ -195,10 +201,10 @@
             <div class="col-md-9" role="main">
 
 <h1 id="module-functions">Module Functions</h1>
-<p>This functions are available for modules.</p>
+<p>These functions are available for exported module functions.</p>
 <p>These are returned by the <code>F</code> table as returned by <code>cfg.init()</code>. So <code>msg()</code> is called as <code>F.msg()</code></p>
 <hr />
-<h4 id="msgs-s-b">msg(s, s, b)</h4>
+<h4 id="msgstr-str-bool">msg(str, str, bool)</h4>
 <p>Given a string as the first argument, it becomes the <code>item</code> field in the Configi messages. A string as second argument becomes the primary message for the operation as shown in the Configi messages and syslog. The boolean third argument indicates the operation status.</p>
 <table>
 <thead>
@@ -223,20 +229,20 @@
 </tbody>
 </table>
 <hr />
-<h4 id="runf-a">run(f, a)</h4>
+<h4 id="runfunc-args">run(func, args)</h4>
 <p>Wraps the function(argument) and modifies the execution depending on the status of the debug (-v) and/or test (-t) flags.</p>
 <p>When debug is on, it add timing information for each operation. If test is on, operations are a noop.</p>
 <hr />
-<h4 id="xrunf-a">xrun(f, a)</h4>
+<h4 id="xrunfunc-args">xrun(func, args)</h4>
 <p>Same as <code>run</code> but always assumes that debug is on.</p>
 <hr />
-<h4 id="openu">open(u)</h4>
+<h4 id="openstr">open(str)</h4>
 <p>Wraps <code>lib.fopen</code> so the open operation is relative to the path of the policy location.</p>
 <hr />
-<h4 id="kepts">kept(s)</h4>
+<h4 id="keptstr">kept(str)</h4>
 <p>Used when returning from a module function eg. <code>return F.kept(s)</code>. Enables handling of the <code>notify_kept</code> parameter and returns the result as if the promise is kept or the operation was skipped.</p>
 <hr />
-<h4 id="results-b-m">result(s, b, m)</h4>
+<h4 id="resultstr-bool-str">result(str, bool, str)</h4>
 <p>Used when returning from a module function eg. <code>return F.result(s, b)</code>. Depending on the boolean return value of the second argument. If <code>true</code> then it enables the handling of the <code>notify</code> parameter and returns the result as if the promise was repaired. If <code>false</code> then it enables the handling of the <code>notify_failed</code> parameter and returns the result as if the promise failed. If <code>nil</code> then it enables the handling of the <code>notify_kept</code> parameter and returns the result as if the promise was kept or the operation was skipped.</p>
 <p>An optional third argument represented as a string can be passed if you want to show a message that is not in the <code>M.report</code> table.</p></div>
         </div>

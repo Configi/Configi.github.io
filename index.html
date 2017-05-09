@@ -99,6 +99,12 @@
                     
                         
 <li >
+    <a href="reference/roles/">Roles</a>
+</li>
+
+                    
+                        
+<li >
     <a href="reference/cli/">Cli</a>
 </li>
 
@@ -183,11 +189,7 @@
         
             <li><a href="#example-policy">Example policy</a></li>
         
-            <li><a href="#policies-are-written-in-moonscript-or-lua">Policies are written in MoonScript or Lua</a></li>
-        
-            <li><a href="#faq">FAQ</a></li>
-        
-            <li><a href="#mailing-list">Mailing list</a></li>
+            <li><a href="#policies-are-written-in-lua">Policies are written in Lua</a></li>
         
     
     </ul>
@@ -196,78 +198,62 @@
 
 <h1 id="configi">Configi</h1>
 <p>A minimalistic infrastructure automation and configuration management software. It is MIT licensed (including the core modules).</p>
-<p>Configi can manage several aspects of system configuration, security and maintenance. Note that this will depend on the availability of Configi modules applicable for your requirement.</p>
-<p>Configi is Linux only at the moment but *BSD and OS X support can be added without considerable bloat.</p>
+<p>Configi can manage several aspects of system configuration, compliance and maintenance. Note that this will depend on the availability of Configi modules available for your requirement.</p>
+<p>Configi is Linux only at the moment but variants of BSD and macOS support is possible but no plans yet.</p>
 <p>See <a href="http://en.wikipedia.org/wiki/Configuration_management">Wikipedia</a> for more information on the topic of configuration management.</p>
 <hr />
-<h4 id="why">Why?</h4>
-<p>There are more mature configuration management software available right now but I find most are bloated both in resource usage and features. The others in the minimalist camp also fall short due to complicated policy, module or extension writing. The latter are usually not far off from shell script wrappers.</p>
+<h2 id="why">Why?</h2>
+<p>There are more mature configuration management software available right now but I find most are bloated both in resource usage and features. The others in the minimalist camp also fall short due to complicated policy writing and poor extensibility.</p>
 <p>Configi was inspired by CFEngine 3, Chef and Ansible. You may see some similarities with these configuration management software in Configi. Especially CFEngine 3, where we borrowed identifiers and concepts introduced by the Promise Theory and Computer Immunology.</p>
 <p>Visit M. Burgess' <a href="http://markburgess.org/sysadmin.html">page</a> for essays, articles and papers regarding Promise Theory and system administration. I do not claim full compliance to the theory so Configi should not be considered a complete replacement for CFEngine 3.</p>
-<p><a href="http://lua.org">Lua</a> is a very good programming language. Its language features lend to simple core and module code. In the same spirit as Lua, the Configi core is very small. With the help of <a href="http://moonscript.org">MoonScript</a>, Configi provides policy writers the capabilities of Lua but with additional reduced cognitive overhead.</p>
 <p>Choosing the right tool is not a rational matter. If the design decisions outlined below aligns with your requirements then please give Configi a try.</p>
 <hr />
-<h4 id="design-decisions">Design decisions</h4>
-<ul>
-<li><strong>Compiled-in modules and policy</strong></li>
-</ul>
-<p>The Configi executable (cfg) with all modules (as of 0.9.0) compiled-in is around 500KiB. In practice this should be less because Configi modules are compiled-in. You can choose the modules only applicable for your policy or host.</p>
-<p>It's also possible to have your policy built-in during compilation of the executable.</p>
-<ul>
-<li><strong>Minimal DSL for writing policies</strong></li>
-</ul>
-<p>Markup languages are getting more popular for this use case but they are more of a hindrance.  Configi has a proper programming language but minimizes the use of DSL semantics.</p>
-<ul>
-<li><strong>Pull or push model</strong></li>
-</ul>
-<p>The ideal system would be a pull-based system but if needed Configi can also emulate a push-based system.</p>
-<ul>
-<li><strong>No packaging required</strong></li>
-</ul>
-<p>You can just copy the Configi (cfg) executable to a host and have it configuring the host in no time.</p>
-<ul>
-<li><strong>No parallel execution</strong></li>
-</ul>
-<p>Parallel execution requires adding features that complicates and bloats the runtime.</p>
-<ul>
-<li><strong>Minimal resource usage</strong></li>
-</ul>
-<p>By avoiding parallel execution and being built in Lua we are guaranteeing very little resources required.</p>
-<ul>
-<li><strong>Deterministic ordering</strong></li>
-</ul>
-<p>By avoiding parallel execution policies are evaluated from top to bottom.</p>
-<ul>
-<li><strong>Depend on existing host tooling</strong></li>
-</ul>
-<p>As much as possible Configi makes use of host tools (e.g coreutils, busybox, native package manager, native process manager). If bypassing host tooling is required or there is none available, Configi modules has the capability to drop down to Lua and/or C for operations.</p>
-<ul>
-<li><strong>The only reporting mechanism is through Syslog</strong></li>
-</ul>
-<p>To be light as possible, it makes sense to support the most widespread reporting facility. If you need to monitor or gather reports from all your hosts you will need to set up consolidated remote syslogging and automated reporting.</p>
+<h2 id="design-decisions">Design decisions</h2>
+<p><strong>Compiled-in modules and policy</strong><br/>
+&emsp;The Configi executable (cfg-agent) with all modules (as of 0.9.0) compiled-in is around 500KiB. In practice this should be less because Configi modules are compiled-in. You can choose the modules only applicable for your policy or host. It's also possible to have your policy built-in during compilation of the executable.</p>
+<p><strong>Minimal DSL for writing policies</strong><br/>
+&emsp;Markup languages are getting more popular for this use case but they are more of a hindrance. Configi has a proper programming language so there is little to no DSL semantics to struggle with.</p>
+<p><strong>Pull or push model</strong><br/>
+&emsp;The ideal system would be a pull-based system but if needed Configi can also emulate a push-based system.</p>
+<p><strong>No packaging required</strong><br/>
+&emsp;You can just copy the Configi (cfg-agent) executable to a host and have it configuring the host in no time.</p>
+<p><strong>Minimal resource usage</strong><br/>
+&emsp;Being built in Lua and C allows for minimal resources used, both and disk space, CPU and memory.</p>
+<p><strong>Depend on existing host tooling</strong><br/>
+&emsp;As much as possible Configi makes use of host tools (e.g coreutils, busybox, native package manager, native process manager). If bypassing host tooling is required or there is none available, Configi modules has the capability to drop down to Lua and/or C for operations or execution.</p>
+<p><strong>The only reporting mechanism is through syslog</strong><br/>
+&emsp;To be light as possible, it makes sense to support the most widespread reporting facility. If you need to monitor or gather reports from all your hosts you will need to set up consolidated remote syslogging and automated reporting.</p>
 <hr />
-<h4 id="example-policy">Example policy</h4>
-<pre><code>file.directory"/tmp/dir"
-  comment: "Create directory if running on Gentoo"
-  context: fact.osfamily.gentoo
-  mode: "0700"
-  notify: "touch"
+<h2 id="example-policy">Example policy</h2>
+<pre><code>    file.directory&quot;/tmp/dir&quot;{
+      comment = &quot;Create directory if running on Gentoo&quot;,
+      context = fact.osfamily.gentoo,
+         mode = 0700,
+       notify = &quot;touch&quot;
+    }
 
-yum.present"mtr"
-  context: fact.osfamily.centos
+    yum.present&quot;mtr&quot;{
+      context = fact.osfamily.centos
+    }
 
-file.absent"/tmp/dir"
-  notify: "touch"
+    file.absent&quot;/tmp/dir&quot;{
+      notify = &quot;touch&quot;
+    }
 
-file.touch"/tmp/dir"
-  comment: "Handle 'touch' notifications. This is only executed once."
-  handle: "touch"
+    file.touch&quot;/tmp/dir&quot;{
+      comment = &quot;Handle 'touch' notifications. This is only executed once.&quot;,
+       handle = &quot;touch&quot;
+    }
 </code></pre>
+
 <hr />
-<h4 id="policies-are-written-in-moonscript-or-lua">Policies are written in MoonScript or Lua</h4>
-<p>MoonScript is a dynamic scripting language that has a clean syntax using significant whitespace. The syntax of MoonScript has been heavily inspired by the syntax of CoffeeScript. MoonScript is CoffeeScript for Lua.</p>
-<p>For reference, see the MoonScript <a href="http://moonscript.org/reference/">Language Guide</a>.</p>
-<p>If you want to further trim the cfg executable, it is possible to remove MoonScript support and just use Lua policies.</p>
+<h2 id="policies-are-written-in-lua">Policies are written in Lua</h2>
+<p><a href="http://lua.org">Lua</a> is a simple and lightweight multi-paradigm dynamically typed programming language. It allows for imperative and functional programming. With a properly specified language we can avoid problems brought upon by ad-hoc implementations of a DSL.</p>
+<p>It is a very suitable scripting language for configuration management. The language' features lend to simple core and module code. It's not a batteries-included scripting language so some binding and module writing is necessary.</p>
+<p>The following learning resources for Lua should get you going:<br/>
+<a href="http://tylerneylon.com/a/learn-lua/">Learn Lua in 15 minutes</a><br/>
+<a href="https://rawgit.com/dlaurie/lua-notes/master/glossary.html">Lua Glossary</a><br/>
+<a href="https://github.com/stevedonovan/lua-gentle-intro/blob/master/readme.md">Gentle introduction to Lua</a></p>
 <hr />
 <h4 id="faq">FAQ</h4>
 <p>1) <strong>Why not LuaJIT?</strong></p>
