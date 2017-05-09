@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Configi</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+
+
+<h2>Functions</h2>
+<ul class="nowrap">
+    <li><a href="#insert_line">insert_line(line, inserts, pattern, plain, before, after)</a></li>
+    <li><a href="#remove_line">remove_line(pattern, plain)</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/apk.html">apk</a></li>
+  <li><a href="../modules/apt.html">apt</a></li>
+  <li><a href="../modules/authorized_keys.html">authorized_keys</a></li>
+  <li><a href="../modules/cron.html">cron</a></li>
+  <li><strong>edit</strong></li>
+  <li><a href="../modules/file.html">file</a></li>
+  <li><a href="../modules/git.html">git</a></li>
+  <li><a href="../modules/hostname.html">hostname</a></li>
+  <li><a href="../modules/iptables.html">iptables</a></li>
+  <li><a href="../modules/luarocks.html">luarocks</a></li>
+  <li><a href="../modules/make.html">make</a></li>
+  <li><a href="../modules/openrc.html">openrc</a></li>
+  <li><a href="../modules/opkg.html">opkg</a></li>
+  <li><a href="../modules/portage.html">portage</a></li>
+  <li><a href="../modules/process.html">process</a></li>
+  <li><a href="../modules/sha256.html">sha256</a></li>
+  <li><a href="../modules/shell.html">shell</a></li>
+  <li><a href="../modules/systemd.html">systemd</a></li>
+  <li><a href="../modules/sysvinit.html">sysvinit</a></li>
+  <li><a href="../modules/template.html">template</a></li>
+  <li><a href="../modules/unarchive.html">unarchive</a></li>
+  <li><a href="../modules/user.html">user</a></li>
+  <li><a href="../modules/yum.html">yum</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>edit</code></h1>
+<p>Text file line editing.</p>
+<p>
+
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>License</strong>: MIT <a href="http://opensource.org/licenses/MIT">http://opensource.org/licenses/MIT</a></li>
+        <li><strong>Author</strong>: Eduardo Tongson <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;p&#114;&#x6f;&#112;&#x6f;&#108;&#x69;&#99;&#x65;&#64;&#x67;m&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x70;&#114;&#x6f;&#112;&#x6f;&#108;&#x69;c&#101;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;c&#111;&#x6d;</a></li>
+        <li><strong>Added</strong>: 2.0.0</li>
+    </ul>
+
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "insert_line"></a>
+    <strong>insert_line(line, inserts, pattern, plain, before, after)</strong>
+    </dt>
+    <dd>
+    Insert lines into an existing file.
+
+    </ul>
+    <h3>Promiser:</h3>
+    <ul>
+         path of text file to modify
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">line</span>
+         to insert [REQUIRED] [ALIAS: content]
+        </li>
+        <li><span class="parameter">inserts</span>
+         a line (string) if found, skips the operation
+        </li>
+        <li><span class="parameter">pattern</span>
+         line is added before or after this pattern [ALIAS: match]
+        </li>
+        <li><span class="parameter">plain</span>
+         turn on or off pattern matching facilities [DEFAULT: "yes", true]
+        </li>
+        <li><span class="parameter">before</span>
+         [DEFAULT: "no", false]
+        </li>
+        <li><span class="parameter">after</span>
+         [DEFAULT: "yes", true]
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">edit.insert_line(<span class="string">"/etc/sysctl.conf"</span>){
+    pattern = <span class="string">"# http://cr.yp.to/syncookies.html"</span>,
+    content = <span class="string">"net.ipv4.tcp_syncookies = 1"</span>,
+      after = <span class="keyword">true</span>,
+     plain  = <span class="keyword">true</span>
+}</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "remove_line"></a>
+    <strong>remove_line(pattern, plain)</strong>
+    </dt>
+    <dd>
+    Remove lines from an existing file.
+
+    </ul>
+    <h3>Promiser:</h3>
+    <ul>
+         path of text file to modify
+    </ul>
+    </ul>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">pattern</span>
+         text pattern to remove [REQUIRED] [ALIAS: match]
+        </li>
+        <li><span class="parameter">plain</span>
+         turn on or off pattern matching facilities [DEFAULT: "yes"]
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">edit.remove_line(<span class="string">"/etc/sysctl.conf"</span>){
+    match = <span class="string">"net.ipv4.ip_forward = 1"</span>,
+    plain = <span class="keyword">true</span>
+}</pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2017-05-09 15:50:38 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
